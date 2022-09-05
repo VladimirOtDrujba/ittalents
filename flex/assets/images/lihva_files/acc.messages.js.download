@@ -1,0 +1,22 @@
+ACC.messages = {
+    appendMessages: function (messagesResult, elementId) {
+        $("#" + elementId).remove();
+        var statusClass = ACC.globalMessagesStyle.getMessagesStatusClass(messagesResult)
+        var renderHtml = "";
+        renderHtml += '<div id=' + elementId + '>';
+        messagesResult.messages.forEach(function (message) {
+            renderHtml += '<div class=\"' + statusClass + '\">';
+            renderHtml += message
+            renderHtml += '</div>';
+        });
+
+        renderHtml += '</div>';
+
+        $('#globalMessages').append(renderHtml);
+        return statusClass.includes("error");
+
+    },
+
+
+
+}

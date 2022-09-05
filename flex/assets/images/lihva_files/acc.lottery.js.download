@@ -1,0 +1,10 @@
+ACC.lottery = {
+    submit: function (form, e, resultId, clearForm) {
+		var filter = $('#lottery_message').val().replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]/gu, '');
+		$('#lottery_message').val(filter);
+        ACC.form.submit(form, e, resultId, clearForm).done(function (response) {
+            ACC.form.processResponse(form, response, resultId, clearForm);
+        });
+
+    }
+}

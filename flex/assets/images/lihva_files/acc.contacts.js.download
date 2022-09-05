@@ -1,0 +1,8 @@
+ACC.contacts = {
+    submit: function (form, e, resultId, clearForm) {
+        ACC.form.submit(form, e, resultId, clearForm).done(function (response) {
+            ACC.form.processResponse(form, response, resultId, clearForm);
+        });
+
+    }
+}

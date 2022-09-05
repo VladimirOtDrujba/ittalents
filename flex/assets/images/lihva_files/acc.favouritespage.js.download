@@ -1,0 +1,25 @@
+ACC.favouritespage = {
+
+		
+	removeFavouritesPageItem : function(entryNumber, url)
+	{
+		
+		ACC.minifavourites.removeMiniFavouritesItem(entryNumber, url);			
+		$("li[data-entrynumber='" + entryNumber +"']").remove();
+		//$( ".cost" ).remove();
+	},	
+	addToCart: function(entryNumber)
+	{
+		$("#addToCartForm"+entryNumber).submit();
+	},
+			
+	init : function(productCode)
+	{
+	
+	}
+};
+
+$(document).ready(function ()
+{
+	ACC.favouritespage.init();
+});

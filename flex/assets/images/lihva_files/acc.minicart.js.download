@@ -1,0 +1,114 @@
+ACC.minicart = {
+	
+	$layer:$('#miniCartLayer'),
+
+	bindMiniCart: function ()
+	{
+		$(document).on('mouseenter', '.miniCart', this.showMiniCart);
+		$(document).on('mouseleave', '.miniCart', this.hideMiniCart);
+	},
+	
+	showMiniCart: function ()
+	{
+
+		if($('#miniCartLayer').data("hover"))
+		{
+			return;
+		}
+		
+		if($('#miniCartLayer').data("needRefresh") != false){
+			ACC.minicart.getMiniCartData(function(){
+				$('#miniCartLayer').data("hover", true);
+				$('#miniCartLayer').data("needRefresh", false);
+			})
+		}
+		
+		$('#miniCartLayer').fadeIn(function(){
+			$('#miniCartLayer').data("hover", true);
+		});
+	},
+	
+	hideMiniCart: function ()
+	{
+		$('#miniCartLayer').fadeOut(function(){
+			$('#miniCartLayer').data("hover", false);
+		});
+	},
+	
+	getMiniCartData : function(callback)
+	{
+		$.ajax({
+			url: $('#miniCartLayer').attr("data-rolloverPopupUrl"),
+			cache: false,
+			type: 'GET',
+			success: function (result)
+			{
+				$('#miniCartLayer').html(result);
+				callback();
+			}
+		});	
+	},
+
+	refreshMiniCartCount : function()
+	{
+		$.ajax({
+			dataType: "json",
+			url: $('#header-basket').attr("data-refreshMiniCartUrl") + Math.floor(Math.random() * 101) * (new Date().getTime()),
+			success: function (data)
+			{
+				$('#basket-count').html(data.miniCartCount);
+			}
+		});
+	},
+
+	removeMiniCartItem : function(entryNumber)
+	{
+		$.ajax({
+			type: "POST",
+			dataType: "json",
+			url: $('#miniCartLayer').attr("data-removeMiniCartItemUrl"),
+			data: { entryNumber: entryNumber },
+			success: function (data)
+			{
+				$('#miniCartLayer').data("needRefresh", true);
+				$('#miniCartLayer').load($('#miniCartLayer').attr('data-rolloverPopupUrl'))
+				$('.basket > strong').html(data.totalItemsCount);
+			}
+		});
+	},
+
+	removeMiniCartBundleItem : function(bundleNo)
+	{
+		$.ajax({
+			type: "POST",
+			dataType: "json",
+			url: $('#miniCartLayer').attr("data-removeMiniCartBundleItemUrl"),
+			data: { bundleNo: bundleNo },
+			success: function (data)
+			{
+				$('#miniCartLayer').data("needRefresh", true);
+				$('#miniCartLayer').load($('#miniCartLayer').attr('data-rolloverPopupUrl'))
+				$('.basket > strong').html(data.totalItemsCount);
+			}
+		});
+	},
+
+	removeAllMiniCartItems : function()
+	{
+		$.ajax({
+			type: "POST",
+			url: $('#miniCartLayer').attr("data-removeAllMiniCartItemsUrl"),
+			success: function (data)
+			{
+				$('#miniCartLayer').data("needRefresh", true);
+				$('#miniCartLayer').load($('#miniCartLayer').attr('data-rolloverPopupUrl'));
+				$('.basket > strong').html(data.totalItemsCount);
+			}
+		});
+	}
+};
+
+$(document).ready(function ()
+{
+	ACC.minicart.bindMiniCart();
+});

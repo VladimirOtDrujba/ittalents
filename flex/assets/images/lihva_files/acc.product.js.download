@@ -1,0 +1,196 @@
+ACC.product = {
+	
+	initQuickviewLightbox:function(){
+		this.enableAddToCartButton();
+		this.bindToAddToCartForm();
+	},
+	
+	
+	enableAddToCartButton: function ()
+	{
+		$('#addToCartButton').removeAttr("disabled");
+	},
+
+	enableStorePickupButton: function ()
+	{
+		$('.pickupInStoreButton').removeAttr("disabled");
+	},
+
+	bindToAddToCartForm: function ()
+	{
+		var addToCartForm = $('.add_to_cart_form');
+		addToCartForm.ajaxForm({success: ACC.product.displayAddToCartPopup});
+	},
+	
+	addProductBoughtTogetherToCart: function ()
+	{
+		strTotalPrice = $('#bought-together-price-id > p > span').text().replace(' ', '');
+		strTotalPrice = strTotalPrice.substring(0, strTotalPrice.indexOf("."));
+		if(strTotalPrice === "0") return;
+		
+		$(".addProductBoughtTogetherForm").submit();
+	},
+
+	bindToAddToCartStorePickUpForm: function ()
+	{
+		var addToCartStorePickUpForm = $('#pickup_store_results .add_to_cart_storepickup_form');
+		addToCartStorePickUpForm.ajaxForm({
+			success: ACC.product.displayAddToCartPopup
+		});
+	},
+
+	displayAddToCartPopup: function (cartResult, statusText, xhr, formElement)
+	{
+		if (cartResult !== '') {
+			$(cartResult).appendTo('body').promise().done(function(){
+				$('#modal_extra').attr('aria-hidden', false);
+				$('.extra-slider').each(function(i, e){
+					
+					$('.slider', e).slick({
+						dots: true,
+						arrows: false,
+						adaptiveHeight: true,
+						speed: 900,
+						slidesToShow: 3,
+						slidesToScroll: 3,
+						responsive: [
+							{
+								breakpoint: 500,
+								settings: {
+									slidesToShow: 2,
+									slidesToScroll: 2
+								}
+							},
+							{
+								breakpoint: 360,
+								settings: {
+									slidesToShow: 1,
+									slidesToScroll: 1
+								}
+							}
+						]
+					});
+					
+				});
+			});	
+	  	  } else {
+	  		  window.location.href = ACC.config.contextPath + "/cart";
+	  	  }
+		
+		//var productCode = $('[name=productCodePost]', formElement).val();
+		//var quantityField = $('[name=qty]', formElement).val();
+
+		//var quantity = 1;
+		//if (quantityField != undefined)
+		//{
+			//quantity = quantityField;
+		//}
+
+		//ACC.track.trackAddToCart(productCode, quantity, cartResult.cartData);
+		
+	},
+
+	bindBoughtTogetherHandlers : function()
+	{
+		$(document).on('click', '.product-item-control > label > input', function()
+			{
+				var listElement, priceElement, totalPriceElement, totalPrice, newPrice;
+				productId = $(this).val();
+				priceId = '#price-' + productId;
+				strPrice = $(priceId).attr("data-formattedValueWhole") + '.' + $(priceId).attr("data-formattedValueDecimal");
+				strPrice = strPrice.replace(/ /g, "");
+				price = parseFloat(strPrice);
+				totalPriceElement = $('#bought-together-price-id > p > span');
+				strTotalPrice = $('#bought-together-price-id').attr("data-formattedValueWhole") + '.' + $('#bought-together-price-id').attr("data-formattedValueDecimal");
+				strTotalPrice = strTotalPrice.replace(/ /g, "");
+				totalPrice = parseFloat(strTotalPrice);
+				
+				if (!$(this).is(":checked"))
+				{// will become unchecked - must subtract
+					newPrice = (( Math.round( (totalPrice - price) * 100) ) / 100).toString();
+					if (newPrice != "0")
+					{
+						newPrice = newPrice.split('.');
+						if (newPrice[1])
+						{
+							if (newPrice[1].length == 1)
+							{
+								newPrice[1] = newPrice[1] + '0';
+							}
+							totalPriceElement.html(newPrice[0].toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ")
+									+ '<sup>' + newPrice[1] + '</sup>');
+						}
+						else
+						{
+							totalPriceElement.html(newPrice[0].toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ")
+									+ '<sup>00</sup>');
+						}
+					$('#bought-together-price-id').attr("data-formattedValueWhole", newPrice[0].toString());
+					if (newPrice[1]){
+						$('#bought-together-price-id').attr("data-formattedValueDecimal", newPrice[1].toString());
+					} 
+					else {
+						$('#bought-together-price-id').attr("data-formattedValueDecimal", '00');
+					}
+					}
+					else 
+					{
+						totalPriceElement.html('0 <sup></sup>');
+						$('#bought-together-price-id').attr("data-formattedValueWhole", '0');
+						$('#bought-together-price-id').attr("data-formattedValueDecimal", '00');
+					}
+				}
+				else
+				{// will become checked - must add
+					newPrice = (( Math.round( (totalPrice + price) * 100) ) / 100).toString().split('.');
+					if (newPrice[1])
+					{
+						if (newPrice[1].length == 1)
+						{
+							newPrice[1] = newPrice[1] + '0';
+						}
+						totalPriceElement.html(newPrice[0].toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ")
+								+ '<sup>' + newPrice[1] + '</sup>');
+					}
+					else
+					{
+						totalPriceElement.html(newPrice[0].toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ")
+								+ '<sup>00</sup>');
+					}
+					$('#bought-together-price-id').attr("data-formattedValueWhole", newPrice[0].toString());
+					if (newPrice[1]){
+						$('#bought-together-price-id').attr("data-formattedValueDecimal", newPrice[1].toString());
+					} 
+					else {
+						$('#bought-together-price-id').attr("data-formattedValueDecimal", '00');
+					}
+				}
+			});
+	},
+	
+	bindPromoProductsInCategory : function(url)
+	{
+		$.ajax({
+			type: "GET",
+			url: url,
+			dataType: "html",
+			success: function (data)
+			{
+				$('#promo-products-block').html(data);
+			}
+		});
+	}
+};
+
+$(document).ready(function ()
+{
+	with(ACC.product)
+	{
+		bindToAddToCartForm();
+		bindToAddToCartStorePickUpForm();
+		enableAddToCartButton();
+		enableStorePickupButton();
+		bindBoughtTogetherHandlers();
+	}
+});
+

@@ -1,0 +1,8 @@
+ACC.careers = {
+    submitFormWithAttachments: function (form, e, resultId, clearForm) {
+        ACC.form.submitFormWithAttachments(form, e, resultId, clearForm).done(function (response) {
+            ACC.form.processResponse(form, response, resultId, clearForm);
+        });
+
+    }
+}

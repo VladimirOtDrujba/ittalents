@@ -1,0 +1,507 @@
+ACC.common = {
+	currentCurrency: "USD",
+	$page: $("#page"),
+
+	setCurrentCurrency: function ()
+	{
+		ACC.common.currentCurrency = ACC.common.$page.data("currencyIsoCode");
+	},
+
+	setProductsToCompare: function ()
+	{
+		if($('#basket-count').length) {
+			$.ajax({
+				   url: ACC.config.contextPath + "/compare/productsToCompare",
+				   dataType: "json",
+				   cache: false,
+				   success:function(data)
+				   {		
+					   if(data != null) {
+						   $('#compare_span').html(data.length);
+						   $('#to-compare-footer').html(data.length);
+						   $( data ).each(function( index ) {
+							   ACC.comparison.getComparisonProduct(data[index].code);
+							  
+							   /*setTimeout(function(){
+									if ($('html').hasClass('compare-line-visible')) {
+										$('html').toggleClass('compare-line-visible');
+									}
+								}, 300);*/
+						   });
+						   ACC.comparison.toggleCompareButton();
+					   } 
+				   }
+			 });
+		}
+	},
+	
+	setFavoritesCount: function ()
+	{
+		 $.ajax({
+			   url: "/favourites/getCount",
+			   type: "POST",
+			   success:function(data)
+			   {		
+				   $('#favourites-count').html(data);
+			   }
+		 });
+	},
+	
+	setCartCount : function()
+	{
+		if ($("#header-basket").length > 0){
+		$.ajax({
+			dataType: "json",
+			url: $('#header-basket').attr("data-refreshMiniCartUrl") + Math.floor(Math.random() * 101) * (new Date().getTime()),
+			success: function (data)
+			{
+				$('#basket-count').html(data.miniCartCount);
+			}
+		});
+		}
+	},
+
+	setPreferedStoreName : function()
+	{
+		$.ajax({
+			   url: "/customer-prefered-store/selected_store_name",
+			   type: "GET",
+			   success:function(data)
+			   {		
+				$(document.body).find($('.header-find-store-label')).html(data);
+				$(document.body).find($('.header-find-store-dropdown-label')).html(data);
+				$(document.body).find($('.js-store__name')).html(data);
+			   }
+		 });
+	},
+	
+	getHeaderAccountMenu : function()
+	{
+		$.ajax({
+			url: ACC.config.contextPath + "/home/anonymousCustomer",
+			dataType: "json",
+			cache: false,
+			success: function (data)
+			{
+				var renderHtml = "";
+				if(data) {
+					var loginUrl = ACC.config.contextPath + "/login";
+					renderHtml += '<li class="sub-menu-item"><a href="' + loginUrl + '" class="item-profile">' + $("#menu-telephone").attr("data-login-txt") + '</a></li>';
+				} else {
+					var logoutUrl = ACC.config.contextPath + "/logout";
+					var ordersUrl = ACC.config.contextPath + "/my-account/open-orders";
+					renderHtml += '<li class="sub-menu-item">';
+					renderHtml += '<button type="button" class="item-profile-button">' + $("#menu-telephone").attr("data-orders-txt") + '</button>';
+					renderHtml += '<ul><li><a href="'+ ordersUrl + '">' + $("#menu-telephone").attr("data-orders-txt") + '</a></li><li><a id="logoutId" href="'+ logoutUrl +'">' + $("#menu-telephone").attr("data-logout-txt") + '</a></li></ul></li>';					
+				}
+				$('#menu-telephone').after(renderHtml);
+			}
+		});
+	},
+	
+	showLogoutMessage : function()
+	{
+		$('#logoutMsgId').remove();
+		
+		var logoutParam = ACC.common.getUrlParameter("logoutP");
+		
+		if(typeof logoutParam != "undefined" && logoutParam != null && logoutParam != ""){
+			var renderHtml = "";
+			renderHtml += '<div id="logoutMsgId" class="info success">'; 
+			renderHtml += $("#menu-telephone").attr("data-logout-msg");
+			renderHtml += '</div>';
+			$('#globalMessages').append(renderHtml);
+		}
+	},
+	
+	refreshScreenReaderBuffer: function ()
+	{
+		// changes a value in a hidden form field in order
+		// to trigger a buffer update in a screen reader
+		$('#accesibility_refreshScreenReaderBufferField').attr('value', new Date().getTime());
+	},
+
+	bindAll: function ()
+	{
+		//ACC.common.bindToUiCarouselLink();
+		ACC.common.bindShowProcessingMessageToSubmitButton();
+		ACC.common.bindLeasingButton();
+	},
+	
+	getUrlParameter : function (sParam) {
+	    var sPageURL = window.location.search.substring(1),
+	        sURLVariables = sPageURL.split('&'),
+	        sParameterName,
+	        i;
+
+	    for (i = 0; i < sURLVariables.length; i++) {
+	        sParameterName = sURLVariables[i].split('=');
+
+	        if (sParameterName[0] === sParam) {
+	        	 return sParameterName[1];
+	        }
+	    }
+	},
+	
+	bindLeasingButton: function ()
+	{
+		
+			$('#addToCartLeasing').click(function() {
+				  window.onbeforeunload = null;
+				  $('#addToCartForm').die();
+				  var addToCartFormData = $('#addToCartForm').serialize();				  
+				  
+				  $.ajax({
+				   url:         $('#addToCartForm').attr("action"),
+				   type:        'POST',
+				   data:        addToCartFormData,
+				   async:       false,
+				   success: function (response) {				  				    
+				    window.location = $("#miniCartLayer").attr("data-cartUrl");
+				   },
+				   error: function(jqXHR, textStatus, errorThrown) {
+				    // log the error to the console
+				    console.log("The following error occured: " + textStatus, errorThrown);
+				   }
+				  });
+
+				 });
+			
+			$('#addToCartLeasingProductsBoughtTogether').click(function() {
+				  window.onbeforeunload = null;
+				  $('#addProductBoughtTogetherForm').die();
+				  var addToCartFormData = $('#addProductBoughtTogetherForm').serialize();				  
+				  
+				  $.ajax({
+				   url:         $('#addProductBoughtTogetherForm').attr("action"),
+				   type:        'POST',
+				   data:        addToCartFormData,
+				   async:       false,
+				   success: function (response) {				  				    
+				    window.location = $("#miniCartLayer").attr("data-cartUrl");
+				   },
+				   error: function(jqXHR, textStatus, errorThrown) {
+				    // log the error to the console
+				    console.log("The following error occured: " + textStatus, errorThrown);
+				   }
+				  });
+
+				 });
+			
+			
+			$('#subscribeBtn').click(function() {
+				  var dailydealSubscribeData = $('#subscribe_email').val();				  
+				  
+				  if(dailydealSubscribeData != null && dailydealSubscribeData != '')
+				  {
+					  var subscribe_url = $('#subscribe_url').val();
+					  
+					  $.ajax({
+						   url: subscribe_url,
+						   type: "POST",
+						   cache: false,						 				   
+						   data: {dailydealSubscribeData: dailydealSubscribeData},
+						   success:function(data, textStatus, jqXHR)
+						   {		
+							   var elements = $(data);
+							   var globalMessages = $(elements).html();
+							   globalMessages = globalMessages.trim();
+							   if(globalMessages != null && globalMessages != '')
+							   {
+									// shows messages, and updates the full checkout body (since too many error-cases are possible)
+								   ACC.common.showMessages(data, globalMessages);
+							   }
+							   else
+							   {
+									// no errors, clears error msgs, and proceeds with next step:
+					//				ACC.common.hideMessages();
+							   }
+							   //jqXHR.abort();
+						   },
+						   error: function(jqXHR, textStatus, errorThrown) {
+						    // log the error to the console
+						    //console.log("The following error occured: " + textStatus, errorThrown);
+						   }
+						  });
+
+					  }
+				  
+			 });
+			
+			
+			$('#unsubscribeBtn').click(function() {
+				  var dailydealSubscribeData = $('#unsubscribe_email').val();				  
+				  
+				  if(dailydealSubscribeData != null && dailydealSubscribeData != '')
+				  {
+					  var subscribe_url = $('#unsubscribe_url').val();
+					  
+					  $.ajax({
+						   url: subscribe_url,
+						   type: "POST",
+						   cache: false,						 				   
+						   data: {dailydealSubscribeData: dailydealSubscribeData},
+						   success:function(data, textStatus, jqXHR)
+						   {		
+							   var elements = $(data);
+							   var globalMessages = $(elements).html();
+							   globalMessages = globalMessages.trim();
+							   if(globalMessages != null && globalMessages != '')
+							   {
+									// shows messages, and updates the full checkout body (since too many error-cases are possible)
+								   ACC.common.showMessages(data, globalMessages);
+							   }
+							   else
+							   {
+									// no errors, clears error msgs, and proceeds with next step:
+					//				ACC.common.hideMessages();
+							   }
+							   //jqXHR.abort();
+						   },
+						   error: function(jqXHR, textStatus, errorThrown) {
+						    // log the error to the console
+						    console.log("The following error occured: " + textStatus, errorThrown);
+						   }
+						  });
+
+					  }
+				  
+			 });
+			
+			$('#subscribeNewsletter_email').keypress(function(e) {
+			    if(e.which == 13) {
+			    	event.preventDefault();
+			    	
+			    	var newsletterSubscribeData = $('#subscribeNewsletter_email').val();				  
+					  if(newsletterSubscribeData != null && newsletterSubscribeData != '')
+					  {
+						  var subscribe_url = $('#subscribeNewsletter_url').val();
+						  ACC.common.subscribe(newsletterSubscribeData, subscribe_url, false);
+					}
+			    }
+			});
+			
+			$('#subscribeNewsletterUIBtn').keypress(function(e) {
+			    if(e.which == 13) {
+			    	event.preventDefault();
+			    	
+			    	 var newsletterSubscribeData = $('#subscribeNewsletterUI_email').val();				  
+					  if(newsletterSubscribeData != null && newsletterSubscribeData != '')
+					  {
+						  var subscribe_url = $('#subscribeNewsletterUI_url').val();
+						  
+						  ACC.common.subscribe(newsletterSubscribeData, subscribe_url, true);
+					  }
+			    }
+			});
+			
+			//Fix for footer enter keypress
+			$('.subscribe-form-footer').on('submit', function(e) {
+				e.preventDefault();
+				
+				var newsletterSubscribeData = $('#subscribeNewsletterUI_email').val();				  
+					  if(newsletterSubscribeData != null && newsletterSubscribeData != '')
+					  {
+						  var subscribe_url = $('#subscribeNewsletterUI_url').val();
+						  
+						  ACC.common.subscribe(newsletterSubscribeData, subscribe_url, true);
+					  }
+			});
+				
+			
+			$(document).on("click", "#subscribeNewsletterBtn", function ()
+			 {
+				  var newsletterSubscribeData = $('#subscribeNewsletter_email').val();				  
+				  //console.log("newsletterSubscribeData:" + newsletterSubscribeData);
+				  if(newsletterSubscribeData != null && newsletterSubscribeData != '')
+				  {
+					  var subscribe_url = $('#subscribeNewsletter_url').val();
+					  
+					  ACC.common.subscribe(newsletterSubscribeData, subscribe_url, false);
+				  }
+			 });
+			
+			$(document).on("click", "#subscribeNewsletterUIBtn", function ()
+			 {
+				  var newsletterSubscribeData = $('#subscribeNewsletterUI_email').val();				  
+				  //console.log("newsletterSubscribeData:" + newsletterSubscribeData);
+				  if(newsletterSubscribeData != null && newsletterSubscribeData != '')
+				  {
+					  var subscribe_url = $('#subscribeNewsletterUI_url').val();
+					  
+					  ACC.common.subscribe(newsletterSubscribeData, subscribe_url, true);
+				  }
+			 });
+			
+			$('#unsubscribeNewsletterBtn').click(function() {
+				  var dailydealSubscribeData = $('#unsubscribeNewsletter_email').val();				  
+				  
+				  if(dailydealSubscribeData != null && dailydealSubscribeData != '')
+				  {
+					  var subscribe_url = $('#unsubscribeNewsletter_url').val();
+					  
+					  $.ajax({
+						   url: subscribe_url,
+						   type: "POST",
+						   cache: false,						 				   
+						   data: {dailydealSubscribeData: dailydealSubscribeData},
+						   success:function(data, textStatus, jqXHR)
+						   {		
+							   var elements = $(data);
+							   var globalMessages = $(elements).html();
+							   globalMessages = globalMessages.trim();
+							   if(globalMessages != null && globalMessages != '')
+							   {
+									// shows messages, and updates the full checkout body (since too many error-cases are possible)
+								   ACC.common.showMessages(data, globalMessages);
+							   }
+							   else
+							   {
+									// no errors, clears error msgs, and proceeds with next step:
+					//				ACC.common.hideMessages();
+							   }
+							   //jqXHR.abort();
+						   },
+						   error: function(jqXHR, textStatus, errorThrown) {
+						    // log the error to the console
+						    console.log("The following error occured: " + textStatus, errorThrown);
+						   }
+						  });
+
+					  }
+				  
+			 });
+			
+			//Neet to add click to #unsubscribeNewsletterBtn  and #subscribeNewsletterBtn
+	},
+	
+	subscribe : function(newsletterSubscribeData, subscribe_url, subscribeNewsletterUI) {
+		
+		$.ajax({
+			   url: subscribe_url,
+			   cache: false,						 				   
+			   data: {newsletterSubscribeData: newsletterSubscribeData},
+			   success:function(data, textStatus, jqXHR)
+			   {		
+				   $('#subscribeNewsletter_email').val('');
+				   $('#subscribeNewsletterUI_email').val('');
+				   
+				   if($('.error').length) {
+						$('.error').remove();
+				   } else if($('.success').length) {
+					   $('.success').remove();
+				   }
+				   
+				   if(subscribeNewsletterUI) {
+					   $('.subscribe-promotion-form').append(data);
+				   } else {
+					   if($('.subscribe-form').length) {
+						   $('.subscribe-form').append(data);
+					   } 
+					   else if ($('.inner-subscribe').length){
+						   $('.inner-subscribe').append(data); 
+					   } 
+				   }
+				  
+				 
+			   },
+			   error: function(jqXHR, textStatus, errorThrown) {
+			    // log the error to the console
+			   // console.log("The following error occured: " + textStatus, errorThrown);
+			   }
+			  });
+	},
+	
+	showMessages : function(data, globalMessages) {
+		//$('#globalMessages').hide();
+		$('#globalMessages').html(globalMessages);
+		$('#globalMessages').stop(true, true).slideDown(500, 'easeInOutExpo');
+	},
+	hideMessages : function() {
+		// hides global error messages if shown from previous err-attempts: 
+		$('#globalMessages').stop(true, true).slideUp(500, 'easeInOutExpo');
+		// removes the error styles if shown from previous err-attempt:
+		$('.error').removeClass('error');
+		// hides the field-error messages if shown from previous err-attempt:
+		$('.msg').hide(); // .html('');
+		$('#globalMessages').html('');
+	},	
+
+	bindToUiCarouselLink: function ()
+	{
+		
+		$("ul.carousel > li a.popup").colorbox({
+			onComplete: function ()
+			{
+				ACC.common.refreshScreenReaderBuffer();
+				$.colorbox.resize();
+				ACC.product.initQuickviewLightbox();
+			},
+
+			onClosed: function ()
+			{
+				ACC.common.refreshScreenReaderBuffer();
+			}
+		});
+	},
+
+	processingMessage: $("<img src='" + ACC.config.commonResourcePath + "/images/spinner.gif'/>"),
+
+	bindShowProcessingMessageToSubmitButton: function ()
+	{
+
+		$(':submit.show_processing_message').each(function ()
+		{
+			$(this).on("click", ACC.common.showProcessingMessageAndBlockForm)
+		});
+	},
+
+	showProcessingMessageAndBlockForm: function ()
+	{
+		$("#checkoutContentPanel").block({ message: ACC.common.processingMessage });
+	},
+
+	blockFormAndShowProcessingMessage: function (submitButton)
+	{
+		var form = submitButton.parents('form:first');
+		form.block({ message: ACC.common.processingMessage });
+	}
+	
+};
+
+$(document).ready(function ()
+{
+	ACC.common.setCurrentCurrency();
+	ACC.common.bindAll();
+	ACC.common.setProductsToCompare();
+	ACC.common.setFavoritesCount();
+	ACC.common.setCartCount();
+	ACC.common.setPreferedStoreName();
+	ACC.common.getHeaderAccountMenu();
+	ACC.common.showLogoutMessage();
+	
+});
+
+
+/* Extend jquery with a postJSON method */
+jQuery.extend({
+	postJSON: function (url, data, callback)
+	{
+		return jQuery.post(url, data, callback, "json");
+	}
+});
+
+// add a CSRF request token to POST ajax request if its not available
+$.ajaxPrefilter(function (options, originalOptions, jqXHR)
+{
+	// Modify options, control originalOptions, store jqXHR, etc
+	if (options.type === "post" || options.type === "POST")
+	{
+		var noData = (typeof options.data === "undefined");
+		var formData = options.data instanceof FormData;
+		if (noData || (!formData && options.data.indexOf("CSRFToken") === -1))
+		{
+			options.data = (!noData ? options.data + "&" : "") + "CSRFToken=" + ACC.config.CSRFToken;
+		}
+	}
+});

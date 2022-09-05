@@ -1,0 +1,876 @@
+html {
+  font-size: 16px;
+}
+
+@font-face {
+  font-family: "Rubik";
+  src: url("../fonts/RubikWetPaint-Regular.ttf");
+}
+
+
+/* hedur*/
+.header {
+  display: flex;
+  height: 70px;
+  background-color: #db232a;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+.logo {
+  height: 100%;
+  width: 280px;
+  background-color: #db232a;
+  display: flex;
+  justify-content: center;
+}
+
+.surch {
+  height: 100%;
+  width: 435px;
+  background-color: #db232a;
+  display: flex;
+  justify-content: center;
+}
+
+.buton {
+  height: 100%;
+  width: 70px;
+  background-color: #db232a;
+  display: flex;
+  justify-content: center;
+}
+
+.broshura {
+  height: 100%;
+  width: 180px;
+  background-color: #db232a;
+  display: flex;
+  justify-content: center;
+}
+
+.telefon {
+  height: 100%;
+  width: 80px;
+  background-color: #db232a;
+  display: flex;
+  justify-content: center;
+}
+
+.input {
+  height: 40px;
+  width: 100%;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.lupa {
+  height: 45px;
+  width: 60%;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: -20px;
+}
+
+.buton-broshura {
+  height: 38px;
+  width: 90%;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: #174aab;
+  color: white;
+  font-size: 10px;
+}
+
+.buton-broshura:hover {
+  background-color: #1150c7;
+  color: white;
+}
+
+.phone {
+  height: 35px;
+  width: 60%;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: -30px;
+}
+
+.vhod {
+  height: 100%;
+  width: 180px;
+  background-color: #db232a;
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+
+}
+
+.text-vhod {
+  height: 25px;
+  width: 30%;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.enFlag {
+  height: 19px;
+  width: 28px;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 10px;
+
+}
+
+.homePic {
+  height: 30px;
+  width: 80px;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.text-en {
+  height: 25px;
+  width: 30%;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+  color: white;
+  margin-left: 10px;
+  margin-bottom: 16px;
+}
+
+.cart {
+  height: 40px;
+  width: 90px;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.cart-div {
+  height: 40px;
+  width: 80px;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+/*krai na hedur*/
+/* Navigaciq i slaid */
+.nav-slide {
+  display: flex;
+  height: 490px;
+  background-color: white;
+  margin: 25px;
+}
+
+.nav-div {
+  height: 100%;
+  width: 240px;
+  background-color: #10e010;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 0px;
+  margin-right: 20px;
+}
+
+.div-left-nav {
+  display: flex;
+  height: 45px;
+  width: 240px;
+  background-color: #1150c7;
+  color: white;
+  font-size: large;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  align-items: center;
+}
+
+.div-left-nav:hover {
+  display: flex;
+  height: 45px;
+  width: 240px;
+  background-color: white;
+  color: black;
+  font-size: large;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  align-items: center;
+}
+
+.slide-div {
+  height: 100%;
+  width: 1040px;
+  background-color: #e70a9d;
+  display: flex;
+  justify-content: center;
+}
+
+.div-transport {
+  display: flex;
+  height: 100px;
+  background-color: white;
+  margin: 25px;
+}
+
+
+.div-transport1 {
+  height: 100%;
+  width: 430px;
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 10px;
+  background-color: white;
+  align-items: center;
+}
+
+.pic-transport1 {
+  height: 60px;
+  width: 65px;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.text-transport {
+  display: inline;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px;
+  color: rgb(61, 58, 58);
+
+}
+
+.text-transport:hover {
+  display: inline;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px;
+  color: red;
+
+}
+
+.div-transport2 {
+  height: 100%;
+  width: 430px;
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: white;
+  align-items: center;
+}
+
+.pic-transport1 {
+  height: 60px;
+  width: 65px;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.div-transport3 {
+  height: 100%;
+  width: 430px;
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: white;
+  align-items: center;
+}
+
+.pic-transport1 {
+  height: 60px;
+  width: 65px;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.div-transport4 {
+  height: 100%;
+  width: 430px;
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: white;
+  align-items: center;
+}
+
+.pic-transport1 {
+  height: 60px;
+  width: 65px;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.div-transport5 {
+  height: 100%;
+  width: 430px;
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px;
+  background-color: white;
+  align-items: center;
+}
+
+.pic-transport1 {
+  height: 60px;
+  width: 65px;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.nadpis-aktualni-predlojeniq {
+  display: flex;
+  height: 90px;
+  background-color: white;
+  margin: 25px;
+}
+
+.nadpis-aktualni-predlojeniq-h1 {
+  font-size: 27px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: rgb(87, 85, 85);
+  align-self: center;
+  margin-left: 500px;
+}
+
+
+.div-aktualni-predlojeniq {
+  display: flex;
+  height: 650px;
+  background-color: white;
+  margin: 25px;
+}
+
+.div-aktualni-predlojeniq-1 {
+  display: flex;
+  flex-direction: column;
+  height: 95%;
+  width: 250px;
+  background-color: white;
+  margin: 5px;
+}
+
+.div-aktualni-predlojeniq-1-top {
+  display: flex;
+  height: 250px;
+  background-color: white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.produkt1-pic {
+  height: 100%;
+  width: 100%;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.div-opisanie {
+  display: flex;
+  height: 50px;
+  background-color: white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 13px;
+  font-family: 'Times New Roman', Times, serif;
+  color: rgb(87, 85, 85);
+  text-align: center;
+  padding-top: 10px;
+}
+
+.div-opcii {
+  display: flex;
+  height: 110px;
+  background-color: white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 13px;
+  font-family: 'Times New Roman', Times, serif;
+  color: rgb(87, 85, 85);
+  text-align: center;
+  padding-top: 10px;
+  padding-left: 22px;
+}
+
+.div-cena {
+  display: flex;
+  height: 60px;
+  background-color: white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 25px;
+  font-family: 'Times New Roman', Times, serif;
+  color: rgb(87, 85, 85);
+  text-align: center;
+  padding-top: 10px;
+  padding-left: 42px;
+}
+
+.red {
+  color: red;
+}
+
+
+
+
+.div-lihva {
+  display: flex;
+  height: 40px;
+  background-color: white;
+  margin-top: 5px;
+  margin-bottom: 25px;
+}
+
+.lihva-pic {
+  height: 100%;
+  width: 100%;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.div-lihva-p {
+  height: 80%;
+  display: block;
+  margin-top: 15px;
+  margin-bottom: auto;
+  margin-left: 20px;
+  color: gray;
+  font-size: 14px;
+}
+
+.div-kupi {
+  display: flex;
+  height: 40px;
+  background-color: #db232a;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.butonKupi-pic {
+  height: 70%;
+  width: 70%;
+  display: inline-block;
+  margin-top: 3px;
+  margin-bottom: auto;
+  margin-left: 70px;
+}
+
+.div-sravni {
+  display: flex;
+  height: 50px;
+  background-color: white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  align-items: center;
+  padding-left: 25px;
+}
+
+
+.div-oferti {
+  display: flex;
+  height: 150px;
+  background-color: white;
+  margin: 25px;
+}
+
+.oferti1 {
+  height: 100%;
+  width: 430px;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 10px;
+}
+
+.oferti2 {
+  height: 100%;
+  width: 430px;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.oferti3 {
+  height: 100%;
+  width: 430px;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px;
+}
+
+.div-promo {
+  display: flex;
+  height: 150px;
+  background-color: rgb(9, 235, 77);
+  margin: 25px;
+}
+
+.promo {
+  height: 100%;
+  width: 100%;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.div-rabotno-vreme {
+  display: flex;
+  height: 300px;
+  background-color: rgb(248, 243, 246);
+  margin: 25px;
+}
+
+.rv-div {
+  display: flex;
+  margin-top: auto;
+  margin-left: 75px;
+  margin-bottom: 40px;
+  height: 100px;
+  width: 100px;
+  background-color: #ec0b0b;
+  border-radius: 30% 30% 30% 30%;
+}
+
+.rv-div:hover {
+  display: flex;
+  margin-top: auto;
+  margin-left: 75px;
+  margin-bottom: 40px;
+  height: 100px;
+  width: 100px;
+  background-color: #ec0b0b;
+  border-radius: 50%;
+}
+
+.rv {
+  height: fit-content;
+  width: fit-content;
+  margin: 15px;
+}
+
+.div-rabotno-vreme-1 {
+  height: 100%;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: #eee8e9;
+}
+
+.div-rabotno-vreme-2 {
+  height: 100%;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: #eee8e9;
+}
+
+.div-rabotno-vreme-3 {
+  height: 100%;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: #eee8e9;
+  align-items: center;
+}
+
+.div-rabotno-vreme-4 {
+  height: 100%;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: #eee8e9;
+  align-items: center;
+}
+
+.div-rabotno-vreme-5 {
+  height: 100%;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: #eee8e9;
+  align-items: center;
+}
+
+.div-rabotno-vreme-goren {
+  height: 65%;
+  width: 250px;
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: #eee8e9;
+  align-content: center;
+
+}
+
+.div-rabotno-vreme-dolen {
+  height: 35%;
+  width: 250px;
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: #eee8e9;
+
+  margin: 2px;
+  align-content: center;
+}
+
+.div-rabotno-vreme-dolen-h1 {
+  display: inline;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px;
+  color: rgb(87, 85, 85);
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.div-aboniraise {
+  display: flex;
+  height: 165px;
+  background-color: #db232a;
+  margin: 25px;
+  margin-bottom: 0px;
+}
+
+.div-aboniraise-1 {
+  height: 100%;
+  width: 400px;
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: #db232a;
+  align-items: center;
+}
+
+.div-aboniraise-2 {
+  height: 100%;
+  width: 466px;
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: #db232a;
+  align-items: center;
+}
+
+.input-aboniraise {
+  height: 40px;
+  width: 400px;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.pismo-aboniraise {
+  height: 35px;
+  width: 45px;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px;
+}
+
+.div-aboniraise-3 {
+  height: 100%;
+  width: 433px;
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: #db232a;
+}
+
+.div-aboniraise-3-p {
+  height: 80%;
+  width: 85%;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 40px;
+  text-align: right;
+  color: white;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.div-footer {
+  display: flex;
+  height: 340px;
+  background-color: rgb(241, 241, 241);
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-top: 0px;
+}
+
+.div-footer-1 {
+  height: 100%;
+  width: 333px;
+  display: inline-table;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: rgb(255, 246, 246);
+  padding-left: 40px;
+  line-height: 1.8;
+}
+
+.div-footer-1-h1 {
+  font-size: 20px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: rgb(129, 126, 126);
+}
+
+.div-footer-1-ul {
+  font-size: 15px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: rgb(133, 130, 130);
+}
+
+.div-footer-1-ul:hover {
+
+  font-size: 15px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: rgb(133, 130, 130);
+}
+
+.div-footer-1-li:hover {
+  text-decoration: underline;
+  font-size: 15px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: rgb(133, 130, 130);
+}
+
+.div-footer-2 {
+  height: 100%;
+  width: 333px;
+  display: inline-table;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: rgb(255, 246, 246);
+  padding-left: 40px;
+  line-height: 1.8;
+}
+
+.div-footer-3 {
+  height: 100%;
+  width: 333px;
+  display: inline-table;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: rgb(255, 246, 246);
+  padding-left: 40px;
+  line-height: 1.8;
+}
+
+.div-footer-4 {
+  height: 100%;
+  width: 333px;
+  display: inline-table;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: rgb(255, 246, 246);
+  padding-left: 40px;
+  line-height: 1.8;
+}
+
+
+.div-footer2 {
+  display: flex;
+  height: 60px;
+  background-color: white;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.pic-div-footer2 {
+  height: 90%;
+  width: 100%;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+
+
+/*   slide */
+
+
+@font-face {
+  font-family: "Rubik";
+  src: url("../fonts/RubikWetPaint-Regular.ttf");
+}
+
+section {
+  width: 100%;
+  /* background-color: cornflowerblue; */
+}
+
+
+
+/*  buton kupi sys z index */
+.buton-produkt {
+  z-index: 2;
+  width: 190px;
+  height: 30px;
+  background-color: #db232a;
+  color: white;
+  position: absolute;
+  border-radius: 25px;
+  border-color: #db232a;
+  margin-bottom: -10px;
+  align-self: flex-end;
+  margin-left: 20px;
+  font-size: 14px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.buton-produkt:hover {
+  z-index: 2;
+  width: 190px;
+  height: 30px;
+  background-color: #ce181f;
+  color: white;
+  position: absolute;
+  border-radius: 25px;
+  border-color: #ce181f;
+  margin-bottom: -10px;
+  align-self: flex-end;
+  margin-left: 20px;
+  font-size: 14px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  cursor: pointer;
+}

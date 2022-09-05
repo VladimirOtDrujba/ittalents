@@ -1,0 +1,56 @@
+ACC.form = {
+    processResponse: function (form, response, resultId, clearForm) {
+        var statusError = ACC.messages.appendMessages(response, resultId);
+        if (!statusError) {
+            ACC.form.cleanFormDataAndStyle(form);
+        }
+        if (statusError && clearForm) {
+            ACC.form.cleanFormData(form);
+        }
+
+        $('html, body').animate({
+            scrollTop: (0)
+        }, 500);
+    },
+
+    cleanFormDataAndStyle: function (form) {
+        ACC.form.cleanFormData(form);
+        ACC.form.cleanFormErrorStyle();
+    },
+    cleanFormData: function (form) {
+        form.clearForm();
+    },
+    cleanFormErrorStyle: function () {
+        $('.form-error').empty();
+        ACC.form.removeErrorClasses();
+    },
+
+    removeErrorClasses: function () {
+        $('.error').removeClass('error');
+    },
+
+    submit: function (form, e, resultId, clearForm) {
+        e.preventDefault();
+        var url = form.attr('action');
+
+        return $.ajax({
+            type: "POST",
+            url: url,
+            data: form.serialize()
+        });
+    },
+
+    submitFormWithAttachments: function (form, e, resultId, clearForm) {
+        e.preventDefault();
+        var formData = new FormData(document.getElementById(form.attr('id')));
+        var url = form.attr('action');
+
+        return $.ajax({
+            type: "POST",
+            url: url,
+            data: formData,
+            processData: false,
+            contentType: false
+        });
+    }
+}

@@ -1,0 +1,231 @@
+﻿var entryQtySprinnerTimeout;
+
+function submitUpdateQtyForm(qtyInput){
+	if(qtyInput){
+		if(entryQtySprinnerTimeout != null){
+			clearTimeout(entryQtySprinnerTimeout);
+		}
+		entryQtySprinnerTimeout = setTimeout(function(){
+			qtyInput.closest('form').submit();
+		}, 500);
+	}
+};
+
+function loadGMapsScript(src) {
+	  var script = document.createElement('script');
+	  script.type = 'text/javascript';
+	  script.src = src;
+	  // script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp' + '&amp;sensor=false&amp;language=bg&signed_in=true&callback=initialize';
+	  document.body.appendChild(script);
+	}
+
+function loadjscssfile(filename, filetype){
+    if (filetype=="js"){ //if filename is a external JavaScript file
+		
+	$('<link type="text/javascript" href="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&amp;language=bg" />').appendTo('head');
+/*	
+        var fileref=document.createElement('script')
+        fileref.setAttribute("type","text/javascript")
+        fileref.setAttribute("src", filename)
+*/
+    }
+    else if (filetype=="css"){ //if filename is an external CSS file
+        var fileref=document.createElement("link")
+        fileref.setAttribute("rel", "stylesheet")
+        fileref.setAttribute("type", "text/css")
+        fileref.setAttribute("href", filename)
+    }
+    if (typeof fileref!="undefined")
+        document.getElementsByTagName("head")[0].appendChild(fileref)
+}
+
+var checkoutNextStepAction = function checkoutNextStepAction(){
+	if($(this).parents('section.roll').next('section.roll').size() != 0){
+		$('html, body').animate({scrollTop: $(this).parents('section').offset().top}, 600, 'easeInOutExpo');
+		$(this).parents('section.roll').find('.roll-body').stop(true, true).slideUp(1000, 'easeInOutExpo');	
+		$(this).parents('section').find('.action').removeClass('open'); // $(this).removeClass('open');
+		
+		$(this).parents('section.roll').next('section.roll').addClass('active').find('.roll-body').stop(true, true).slideDown(1000, 'easeInOutExpo');
+//		$('html, body').animate({ scrollTop: $(this).parents('section.roll').next('section.roll').offset().top}, 1000, 'easeInOutExpo');
+		$(this).parents('section.roll').next('section.roll').find('.action').addClass('open');
+	}
+}
+
+function bindCheckoutNextStepAction(){
+	$(document.body).off('click', '.checkout .next-step');
+	//Checkout
+	$(document.body).on('click', '.checkout .next-step', checkoutNextStepAction);
+};
+
+function bindCheckoutExapndCollapseActions(){
+	$(document.body).off('click', '.checkout section.active header .action, .checkout section.visible header .action');
+}
+
+$(window).on('load', function(){
+	$('.quantity a').unbind();
+	
+	bindCheckoutNextStepAction();
+	// bindCheckoutExapndCollapseActions();
+	
+	// Product quantity
+	$('.quantity a').on('click', function(){
+	
+        var inc_dec = $(this).attr('class');
+	    var input_element = $(this).parent().children('input.q');
+		var input_value = input_element.val();
+        var originalInVal = input_value;
+        
+        if(inc_dec == 'inc'){
+            input_value ++;
+        } else if (inc_dec == 'dec'){
+            input_value --;
+        }
+		
+        if(input_value < 1){
+            input_value = 1;
+        }
+        input_element.val(input_value);
+        if(originalInVal != input_value){
+        	submitUpdateQtyForm(input_element);
+        }
+    });
+	
+	$('.quantity input.q').on('keyup', function(){
+		var input_value = $(this).val();
+		if(input_value < 1){
+	        input_value = 1;
+	    }
+	    $(this).val(input_value);
+	    
+	    submitUpdateQtyForm($(this))
+	});
+
+	$('.submitRemoveBundle').on("click", function ()
+	{
+		$(this).closest('form').submit();
+	});
+	
+});
+
+
+function hideAll(){
+	$('.vlux_leasing_option').addClass('hidden');
+}
+
+
+$(function(){
+	$('#cboxContent').on('click', function(event){
+		// console.debug('clicked leasing plan, event= ' + event );
+		if(event.target.parentNode.children[1].name=='pick_leasing')
+		{		
+			$('.leasing_company_radio').removeClass('on');		
+			$(event.target.parentNode).toggleClass('on');
+			
+			var id = event.target.parentNode.children[1].id;						
+			
+			var selected_leasing = $('#'+id).val();
+			//console.debug("selected = " + selected_leasing);
+			$('.vlux_leasing_option').addClass('hidden');
+			//console.debug("Trying to remove  hidden from  = leasing-plans-" + selected_leasing);
+			$('#leasing-plans-'+selected_leasing+'').removeClass('hidden');			
+		}		
+		//event.stopPropagation();
+		//console.debug('resized ojb: ' + $('.inline-popup:not(.popup-pick)').colorbox().height());
+		$('.inline-popup:not(.popup-pick)').colorbox().resize();
+	});																					
+});
+
+//
+//// Fix for the tabs issue
+//$(document).on('ready', function() {
+//
+//	if ($('div.line-tabs').data('activetab'))
+//	{
+//		defaultActiveTab = $('div.line-tabs').data('activetab');
+//	}
+//	else
+//	{
+//		defaultActiveTab = $('#tab-description').get(0) ? 'tab-description' : 'tab-characteristics';
+//	}
+//
+//	/*
+//	 * if we're here the user has selected a tab different
+//	 * than the characteristics tab and we should display it
+//	 * 
+//	 * we use the product code so if the user visits another product
+//	 * detail page we will display the characteristics tab
+//	 */
+//	if (sessionStorage.activeTab && sessionStorage.activeTab.split(',')[0] !== defaultActiveTab
+//			&& sessionStorage.activeTab.split(',')[1] == $('#productCodeForTabs').val())
+//	{
+//		$('#' + sessionStorage.activeTab.split(',')[0]).addClass('active');
+//		$('#' + sessionStorage.activeTab.split(',')[0] + '-holder').addClass('visible');
+//	}
+//	/*
+//	 * if we're here then this is the first time the user visits the
+//	 * detail page for this product or is visiting the detail page
+//	 * for a different product and we should display the
+//	 * characteristics tab
+//	 */
+//	else
+//	{
+//		$('#' + defaultActiveTab).addClass('active');
+//		$('#' + defaultActiveTab + '-holder').addClass('visible');
+//	}
+//	
+//	if($('.product-preview').length > 0){	
+//		var regex = /(\?v=|\&v=|\/\d\/|\/embed\/|\/v\/|\.be\/)([a-zA-Z0-9\-\_]+)/,
+//			youtubeurl,
+//			regexyoutubeurl;
+//	}
+//
+//	// unBind the product-detail-page tabs' links click handlers:
+//	$('.line-tabs:not(.external-tabs)').each(function(){
+//		var master = $(this);
+//		$('.tab-link', master).off('click');
+//	});
+//	
+//	// bind the tabs' links click handler which can call function of the availability tab:
+//	$('.line-tabs:not(.external-tabs)').each(function(){
+//		
+//		var master = $(this);
+//		
+//		$('.tab-link', master).on('click', function(e){
+//			e.preventDefault();
+//		
+//			if(!$(this).is('.active')){
+//				
+//				var tab_href = $(this).attr('href'),
+//					tab_selected = tab_href.replace('#', '');
+//				// console.debug('tab_selected = ' + tab_selected);
+//					
+//				if($('div.' + tab_selected).length){
+//					if(tab_selected == 'tab-stores'){
+//						// mapData.gMapsScripts();
+//						var targetGMap = $('div.' + tab_selected, master).find('.store-map.gMapTarget');
+//						// console.debug("targetGMap = " + targetGMap.attr('id') + " ;length= " +targetGMap.length );
+//						targetGMap.trigger('loadGMap');
+//					}
+//					
+//					$('.tab-link', master).removeClass('active').filter('.tab-link[href*='+ tab_selected +']', master).addClass('active');
+//					
+//					$('.tab', master).removeClass('visible').filter('div.' + tab_selected, master).addClass('visible');
+//					
+//					if($(document).scrollTop() != $('div.' + tab_selected, master).offset().top - 66){
+//						$('html, body').stop(true, true).delay(500).animate({scrollTop: $('div.' + tab_selected, master).offset().top - 66}, 800, 'easeInOutExpo');
+//					}
+//				}
+//			}
+//			
+//			if(!Modernizr.flexbox && $('.equal-height-block').length > 0){
+//				equalBlockHeight();
+//			}
+//		});		
+//	});
+//	
+//})
+
+// Затваряме popup-а с Cross Sale продуктите
+function closeCrossSalePopup(){
+	$.colorbox.close();
+}

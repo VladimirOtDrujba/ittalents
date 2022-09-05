@@ -1,0 +1,23 @@
+var contactsForm = $("#contactFormId");
+contactsForm.submit(function (e) {
+    ACC.contacts.submit(contactsForm, e, "contactsFormMessage",true);
+});
+var lotteryForm = $("#lotteryFormId");
+lotteryForm.submit(function (e) {
+    ACC.lottery.submit(lotteryForm, e, "lotteryFormMessage",true);
+});
+var reviewForm = $("#reviewFormId");
+reviewForm.submit(function (e) {
+    ACC.productReview.submit(reviewForm, e, "reviewFormMessage",false);
+});
+var returnProductsForm = $("#returnOrderFormId");
+returnProductsForm.submit(function (e) {
+    ACC.returnProduct.submitReturnProduct(returnProductsForm, e, "returnOrderFormMessage",false);
+})
+var careersForm = $("#position_apply");
+careersForm.submit(function (e) {
+    ACC.careers.submitFormWithAttachments(careersForm, e, "careersFormMessage",true);
+})
+function submitReturnProductForm(token) {
+  		$("#returnOrderFormId").submit();
+}

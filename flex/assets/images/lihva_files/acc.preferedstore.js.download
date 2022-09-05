@@ -1,0 +1,337 @@
+ACC.preferedstore = {
+
+	storeNameChanged : false,
+		
+	handleChangeStoreButtonClick: function ()
+	{
+		var preferedStore = $(this).data("id");
+		if(typeof preferedStore === "undefined") {
+			preferedStore = $(".js-selected__store").prop("value");
+		}
+		$.ajax({
+			   url: "/customer-prefered-store/change_store_name/" + preferedStore,
+			   type: "POST",
+			   success:function(data)
+			   {		
+				   ACC.common.setPreferedStoreName();
+				   ACC.preferedstore.storeNameChanged = true;
+				   ACC.preferedstore.handleCloseStoreButtonClick();
+			   }
+		 });
+	},
+
+	bindToChangeStoreButton: function ()
+	{
+		$(document).on("click", '.js-select__store', ACC.preferedstore.handleChangeStoreButtonClick);
+	},
+	
+	handleCloseStoreButtonClick: function ()
+	{
+		var isCategorySearch = false;
+		var isTextSearch = false;
+		
+		var mapEnteredValue = $('.js-map__search').val();
+		var storeValue = mapEnteredValue.replace(/\D/g, "");
+		
+		if ((storeValue == null || storeValue == "") && !ACC.preferedstore.storeNameChanged) {
+			  $(this).parents('.modal').attr('aria-hidden', true);
+			  $('html').removeClass('modal-shown');			 
+			  $(document.body).find($('.remove-after-close')).remove();
+			  return;
+		}
+		
+		if($('#search-page').length > 0) {
+			
+			ACC.preferedstore.storeNameChanged = false;
+			
+			var url = window.location.href;
+			
+			if (url.indexOf("/c/") >= 0) {
+				isCategorySearch = true;
+				if (url.indexOf("ajaxLoad") >= 0) {
+					url = url.replace("ajaxLoad=false", "ajaxLoad=true");
+				} else {
+					url = url + "?ajaxLoad=true";
+				}
+			}
+			
+			if(url.indexOf("query") >= 0) {
+				isTextSearch = true;
+				url = url + "&ajaxLoad=true";
+			}
+			
+			var scrollbarArr = [];
+			var scroll_position = $('.aside-form__content').scrollTop();
+
+			$('.custom-scrollbar').each(function (i, e) {
+				scrollbarArr.push($('.mCSB_container', e).css('top') || '0px');
+			});
+			
+			if(isCategorySearch || isTextSearch) {
+				$.ajax({
+					type: "GET",
+					url: url,
+					dataType: "html",
+					success: function (data)
+					{
+						$('#search-page').html(data);
+						ACC.facetsSearch.initPriceSlider(isCategorySearch);
+						ACC.facetsSearch.initPageAfterAjaxCall(scroll_position, scrollbarArr);
+						bindTooltip();
+						$("div").parents('.modal').attr('aria-hidden', true);
+						$('html').removeClass('modal-shown');			 
+						$(document.body).find($('.remove-after-close')).remove();
+					}
+				});
+			} else {
+				var res = url.substring(url.indexOf("?"), url.length);	
+				$.ajax({
+						type: "GET",
+						url: ACC.config.contextPath + "/search/searchProducts" + res,
+						dataType: "html",
+						success: function (data)
+						{
+							$('#search-page').html(data);
+							ACC.facetsSearch.initPriceSlider(isCategorySearch);
+							ACC.facetsSearch.initPageAfterAjaxCall(scroll_position, scrollbarArr);
+							bindTooltip();
+							$("div").parents('.modal').attr('aria-hidden', true);
+							$('html').removeClass('modal-shown');			 
+							$(document.body).find($('.remove-after-close')).remove();
+						}
+					});
+			}
+		} else {
+			location.reload();
+		}
+	},
+	
+	
+	openPreferedStorePopup : function (productCode)
+	{
+		if(('#modal_map').length > 0){
+  		  $('#modal_map').remove();
+  	  	} 
+		
+		$.ajax({
+			type: "GET",
+			url: ACC.config.contextPath + "/customer-prefered-store/getStoresMapBox",
+			data: { productCode: productCode },
+			dataType: "html",
+			success: function (data)
+			{
+				$(data).appendTo('body').promise().done(function(){
+    	  			$('#modal_map').attr('aria-hidden', false);
+					$('#modal_delivery').remove();
+					bindTooltip();
+		  		  });	
+			}
+		});
+	},
+
+	openCartPreferedStorePopup : function ()
+	{
+		if(('#modal_map').length > 0){
+			$('#modal_map').remove();
+		}
+
+		$.ajax({
+			type: "GET",
+			url: ACC.config.contextPath + "/customer-prefered-store/getStoresMapBox",
+			dataType: "html",
+			success: function (data)
+			{
+				$(data).appendTo('body').promise().done(function(){
+					$('#modal_map').attr('aria-hidden', false);
+					bindTooltip();
+				});
+			}
+		});
+	},
+	
+	openMobileDeliveryPopup : function (productCode)
+	{
+		if(('#modal_delivery').length > 0){
+	  		  $('#modal_delivery').remove();
+	  	  	} 
+		
+		$.ajax({
+			type: "GET",
+				url: ACC.config.contextPath + "/customer-prefered-store/mobile-delivery-popup",
+				data: { productCode: productCode },
+				dataType: "html",
+				success: function (data)
+	{
+		$(data).appendTo('body').promise().done(function(){
+		 $('#modal_delivery').attr('aria-hidden', false);
+				bindTooltip();
+        });	
+    }
+});
+	},
+	
+	openMobileDeliveryAndDeliveryCostPopup : function (productCode)
+	{
+		var postalCodeStr = $('#postal-code').val();
+		var postalCode = postalCodeStr.replace(/\D/g, "");
+		
+		if(postalCode == null || postalCode =="") return;
+		
+		$.ajax({
+			type: "GET",
+			url: ACC.config.contextPath + "/delivery-calculation/mobile-delivery-cost-for-postal-code",
+			data: { productCode: productCode, postalCode : postalCode },
+			dataType: "html",
+			success: function (data)
+			{
+				if(('#mobile-delivery-cost-for-postal-code').length > 0){
+			  		  $('#mobile-delivery-cost-for-postal-code').remove();
+			  	  	} 
+				
+				$('#mobile-delivery-cost-for-postal-code-container').append(data);
+					
+				$('#delivery-options').click();
+				bindTooltip();
+			}
+		});
+	},
+	
+	openDeliveryPriceForPostalCodePopup : function (productCode)
+	{
+		if(('#modal_other_delivery').length > 0){
+	  		  $('#modal_delivery').remove();
+	  	  	} 
+		
+		$.ajax({
+			type: "GET",
+			url: ACC.config.contextPath + "/delivery-calculation/delivery-postal-code-popup",
+			data: { productCode: productCode },
+			dataType: "html",
+			success: function (data)
+			{
+				$(data).appendTo('body').promise().done(function(){
+    	  			$('#modal_other_delivery').attr('aria-hidden', false);
+					bindTooltip();
+		  		  });	
+			}
+		});
+	},
+
+	openCartDeliveryPriceForPostalCodePopup : function ()
+	{
+		if(('#modal_other_delivery').length > 0){
+			$('#modal_delivery').remove();
+		}
+
+		$.ajax({
+			type: "GET",
+			url: ACC.config.contextPath + "/delivery-calculation/delivery-postal-code-popup",
+			dataType: "html",
+			success: function (data)
+			{
+				$(data).appendTo('body').promise().done(function(){
+					$('#modal_other_delivery').attr('aria-hidden', false);
+					bindTooltip();
+				});
+			}
+		});
+	},
+	
+	getDeliveryCostForPostalCode : function (productCode)
+	{
+		var postalCodeStr = $('#postal-code').val();
+		var postalCode = postalCodeStr.replace(/\D/g, "");
+		
+		if(postalCode == null || postalCode =="") return;
+		
+		$.ajax({
+			type: "GET",
+			url: ACC.config.contextPath + "/delivery-calculation/delivery-cost-for-postal-code",
+			data: { productCode: productCode, postalCode : postalCode },
+			dataType: "html",
+			success: function (data)
+			{
+				if(('#delivery-cost-table').length > 0){
+					$('#delivery-cost-table').remove();
+				}
+				
+				$('#price-for-postal-code').append(data);
+				bindTooltip();
+			}
+		});
+	},
+	
+	closeDeliveryCostForPostalCodePopup : function ()
+	{
+		var postalCodeStr = $('#postal-code').val();
+		var postalCode = postalCodeStr.replace(/\D/g, "");
+		var isCategorySearch = false;
+		var isTextSearch = false;
+		
+		if (postalCode == null || postalCode == "") {
+			  $(this).parents('.modal').attr('aria-hidden', true);
+			  $('html').removeClass('modal-shown');
+		
+		} else if($('#search-page').length > 0) {
+			
+			var url = window.location.href;
+			
+			if (url.indexOf("/c/") >= 0) {
+				isCategorySearch = true;
+				if (url.indexOf("ajaxLoad") >= 0) {
+					url = url.replace("ajaxLoad=false", "ajaxLoad=true");
+				} else {
+					url = url + "?ajaxLoad=true";
+				}
+			}
+			
+			if(url.indexOf("query") >= 0) {
+				isTextSearch = true;
+				url = url + "&ajaxLoad=true";
+			}
+			
+			var scrollbarArr = [];
+			var scroll_position = $('.aside-form__content').scrollTop();
+
+			$('.custom-scrollbar').each(function (i, e) {
+				scrollbarArr.push($('.mCSB_container', e).css('top') || '0px');
+			});
+			
+			if(isCategorySearch || isTextSearch) {
+				$.ajax({
+					type: "GET",
+					url: url,
+					dataType: "html",
+					success: function (data)
+					{
+						$('#search-page').html(data);
+						ACC.facetsSearch.initPriceSlider(isCategorySearch);
+						ACC.facetsSearch.initPageAfterAjaxCall(scroll_position, scrollbarArr);
+						bindTooltip();
+					}
+				});
+			} else {
+				var res = url.substring(url.indexOf("?"), url.length);	
+				$.ajax({
+						type: "GET",
+						url: ACC.config.contextPath + "/search/searchProducts" + res,
+						dataType: "html",
+						success: function (data)
+						{
+							$('#search-page').html(data);
+							ACC.facetsSearch.initPriceSlider(isCategorySearch);
+							ACC.facetsSearch.initPageAfterAjaxCall(scroll_position, scrollbarArr);
+							bindTooltip();
+				}});
+			}
+			
+		} else {
+			location.reload();
+		}
+	},
+	
+	
+	
+}
+
+

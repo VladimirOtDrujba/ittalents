@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Владополис</title>
+    <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/styles/reset.css">
+    <link rel="stylesheet" href="./assets/styles/style.css">
+
+</head>
+
+<div class="header">
+    <div class="logo">
+        <img src="./assets/images/logo.png" alt="logo" width="80%">
+    </div>
+    <div class="surch">
+        <input type="search" class="input" value="ТЪРСИ...">
+    </div>
+    <a href="#">
+        <div class="buton">
+            <img src="./assets/images/lupa.png" alt="lupa" class="lupa">
+        </div>
+    </a>
+    <div class="broshura">
+        <button class="buton-broshura" type="button">ПРОДУКТИ ОТ БРОШУРАТА</button>
+    </div>
+    <a href="#">
+        <div class="telefon">
+            <img src="./assets/images/phone.png" alt="phone" class="phone">
+        </div>
+    </a>
+    <div class="vhod">
+        <a href="#" class="text-vhod">ВХОД</a>
+        <a href="#" class="text-en">ЕN</a>
+        <img src="./assets/images/enFlag.png" alt="enFlag" class="enFlag">
+        <img src="./assets/images/homePic.png" alt="homePic" class="homePic">
+    </div>
+    <div class="cart-div">
+        <a href="#"> <img src="./assets/images/cart.png" alt="cart" class="cart"></a>
+    </div>
+</div>
+
+<div class="nav-slide">
+    <div class="nav-div">
+        <div class="div-left-nav"><b>TV Видео и Gaming</b></div>
+        <div class="div-left-nav"><b>Телефони и таблети</b></div>
+        <div class="div-left-nav"><b>Фото и видеокамери</b></div>
+        <div class="div-left-nav"><b>Авто и GPS</b></div>
+        <div class="div-left-nav"><b>Компютри и периферия</b></div>
+        <div class="div-left-nav"><b>Компютърни аксесоари</b></div>
+        <div class="div-left-nav"><b>Спорт и свободно време</b></div>
+        <div class="div-left-nav"><b>Дом и градина</b></div>
+        <div class="div-left-nav"><b>Малки електроуреди</b></div>
+        <div class="div-left-nav"><b>Климатици и отоплители</b></div>
+        <div class="div-left-nav"><b>Домакински електроуреди</b></div>
+    </div>
+    <div class="slide-div">
+        <style>
+            @keyframes slideLeft {
+
+                from,
+                to {
+                    transform: translateX(0);
+                }
+
+                10% {
+                    transform: translateX(0);
+                }
+
+                17% {
+                    transform: translateX(-100%);
+                }
+
+                25% {
+                    transform: translateX(-100%);
+                }
+
+                32% {
+                    transform: translateX(-200%);
+                }
+
+                40% {
+                    transform: translateX(-200%);
+                }
+
+                48% {
+                    transform: translateX(-300%);
+                }
+
+                65% {
+                    transform: translateX(-300%);
+                }
+
+                72% {
+                    transform: translateX(-400%);
+                }
+
+                80% {
+                    transform: translateX(-400%);
+                }
+
+                90% {
+                    transform: translateX(-500%);
+                }
+
+                100% {
+                    transform: translateX(-500%);
+                }
+            }
+
+            section {
+                overflow: hidden;
+            }
+
+            .image-container {
+                display: flex;
+                height: 100%;
+                animation: slideLeft 15s linear infinite;
+            }
+
+            #image-1 {
+                width: 100%;
+                flex-shrink: 0;
+                background: url("./assets/images/slide1.jpg");
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+            #image-2 {
+                width: 100%;
+                flex-shrink: 0;
+                background: url("./assets/images/slide2.jpg");
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+            #image-3 {
+                width: 100%;
+                flex-shrink: 0;
+                background: url("./assets/images/slide3.jpg");
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+            #image-4 {
+                width: 100%;
+                flex-shrink: 0;
+                background: url("./assets/images/slide4.jpg");
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+            #image-5 {
+                width: 100%;
+                flex-shrink: 0;
+                background: url("./assets/images/slide5.jpg");
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+            #image-6 {
+                width: 100%;
+                flex-shrink: 0;
+                background: url("./assets/images/slide6.jpg");
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+        </style>
+
+        <section>
+            <div class="image-container" style="color: rgba(125, 133, 132, 0.575);">
+                <div id="image-1">1/6</div>
+                <div id="image-2">2/6</div>
+                <div id="image-3">3/6</div>
+                <div id="image-4">4/6</div>
+                <div id="image-5">5/6</div>
+                <div id="image-6">6/6</div>
+            </div>
+        </section>
+
+    </div>
+</div>
+<div class="div-transport">
+    <div class="div-transport1">
+        <a href="#"><img src="./assets/images/transport1.png" alt="transport1.png" class="pic-transport1"></a>
+        <H1 class="text-transport">ОФЕРТА НА ДЕНЯ</H1>
+    </div>
+    <div class="div-transport2">
+        <a href="#"><img src="./assets/images/transport2.png" alt="transport1.png" class="pic-transport2"></a>
+        <H1 class="text-transport">КУПИ ОНЛАЙН И ВЗЕМИ ОТ МАГАЗИН</H1>
+    </div>
+    <div class="div-transport3">
+        <a href="#"><img src="./assets/images/transport3.png" alt="transport1.png" class="pic-transport3"></a>
+        <H1 class="text-transport">УДЪЛЖЕНА ГАРАНЦИЯ</H1>
+    </div>
+    <div class="div-transport4">
+        <a href="#"><img src="./assets/images/transport4.png" alt="transport1.png" class="pic-transport4"></a>
+        <H1 class="text-transport">SMART CARE</H1>
+    </div>
+    <div class="div-transport5">
+        <a href="#"><img src="./assets/images/transport5.png" alt="transport1.png" class="pic-transport5"></a>
+        <H1 class="text-transport">ТРАНСПОРТ ДО ВХОДА НА СГРАДАТА</H1>
+    </div>
+</div>
+<div class="nadpis-aktualni-predlojeniq">
+    <h1 class="nadpis-aktualni-predlojeniq-h1">Актуални предложения</h1>
+</div>
+<div class="div-aktualni-predlojeniq">
+    <div class="div-aktualni-predlojeniq-1">
+        <div class="div-aktualni-predlojeniq-1-top">
+            <a href="#"><img src="./assets/images/produkt1.jpg" alt="produkt1.jpg" class="produkt1-pic"></a>
+            <a href="#"></a><button type="button" class="buton-produkt">Продукт от брошурата</button></a>
+        </div>
+        <div class="div-opisanie">
+            <p>Смартфон GSM XIAOMI REDMI NOTE 11 PRO 6.67 ", 64 GB, RAM 6 GB, 108+8+2+2...</p>
+        </div>
+        <div class="div-opcii">
+            <p>( Виж опции за взимане и доставка )</p>
+
+        </div>
+        <div class="div-cena">
+            <p class="red"><span style="color: grey;font-size: 15px;">Цена:</span><span> 545</span><sup
+                    style="font-size: 15px;">00</sup><span style="font-size:15px ;"> лв.</span></p>
+        </div>
+        <div class="div-lihva">
+            <a href="#"><img src="./assets/images/lihva.png" alt="lihva.png" class="lihva-pic"></a>
+            <p class="div-lihva-p">лихва, такси и ГПР</p>
+        </div>
+        <div class="div-kupi">
+            <a href="#"><img src="./assets/images/butonKupi.png" alt="butonKupi.png" class="butonKupi-pic"></a>
+        </div>
+        <div class="div-sravni">
+            <a href="#"><img src="./assets/images/butonSravni.png" alt="butonSravni.png" class="butonSravni-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Сравни</p>
+            <a href="#"><img src="./assets/images/butonFavorit.png" alt="butonFavorit.png" class="butonFavorit-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Любими</p>
+        </div>
+
+    </div>
+    <div class="div-aktualni-predlojeniq-1">
+        <div class="div-aktualni-predlojeniq-1-top">
+            <a href="#"><img src="./assets/images/produkt2.jpg" alt="produkt2.jpg" class="produkt1-pic"></a>
+            <a href="#"></a><button type="button" class="buton-produkt">Продукт от брошурата</button></a>
+        </div>
+        <div class="div-opisanie">
+            <p>Гейминг лаптоп ASUS TUF Dash F15 FX517ZE-HN002 15.6 ", INTEL CORE I7-...</p>
+        </div>
+        <div class="div-opcii">
+            <p>( Виж опции за взимане и доставка )</p>
+
+        </div>
+        <div class="div-cena">
+            <p class="red"><span style="color: grey;font-size: 15px;">Цена:</span><span> 2 199</span><sup
+                    style="font-size: 15px;">00</sup><span style="font-size:15px ;"> лв.</span></p>
+        </div>
+        <div class="div-lihva">
+            <a href="#"><img src="./assets/images/lihva.png" alt="lihva.png" class="lihva-pic"></a>
+            <p class="div-lihva-p">лихва, такси и ГПР</p>
+        </div>
+        <div class="div-kupi">
+            <a href="#"><img src="./assets/images/butonKupi.png" alt="butonKupi.png" class="butonKupi-pic"></a>
+        </div>
+        <div class="div-sravni">
+            <a href="#"><img src="./assets/images/butonSravni.png" alt="butonSravni.png" class="butonSravni-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Сравни</p>
+            <a href="#"><img src="./assets/images/butonFavorit.png" alt="butonFavorit.png" class="butonFavorit-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Любими</p>
+        </div>
+    </div>
+    <div class="div-aktualni-predlojeniq-1">
+        <div class="div-aktualni-predlojeniq-1-top">
+            <a href="#"><img src="./assets/images/produkt3.jpg" alt="produkt3.jpg" class="produkt1-pic"></a>
+            <a href="#"></a><button type="button" class="buton-produkt">Продукт от брошурата</button></a>
+        </div>
+        <div class="div-opisanie">
+            <p>Телевизор SAMSUNG QE-55S95B 4K Ultra HD OLED SMART TV, TIZEN, 55.0 ", 138.0...</p>
+        </div>
+        <div class="div-opcii">
+            <p>( Виж опции за взимане и доставка )</p>
+
+        </div>
+        <div class="div-cena">
+            <p class="red"><span style="color: grey;font-size: 15px;">Цена:</span><span> 3 499</span><sup
+                    style="font-size: 15px;">00</sup><span style="font-size:15px ;"> лв.</span></p>
+        </div>
+        <div class="div-lihva">
+            <a href="#"><img src="./assets/images/lihva.png" alt="lihva.png" class="lihva-pic"></a>
+            <p class="div-lihva-p">лихва, такси и ГПР</p>
+        </div>
+        <div class="div-kupi">
+            <a href="#"><img src="./assets/images/butonKupi.png" alt="butonKupi.png" class="butonKupi-pic"></a>
+        </div>
+        <div class="div-sravni">
+            <a href="#"><img src="./assets/images/butonSravni.png" alt="butonSravni.png" class="butonSravni-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Сравни</p>
+            <a href="#"><img src="./assets/images/butonFavorit.png" alt="butonFavorit.png" class="butonFavorit-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Любими</p>
+        </div>
+    </div>
+    <div class="div-aktualni-predlojeniq-1">
+        <div class="div-aktualni-predlojeniq-1-top">
+            <a href="#"><img src="./assets/images/produkt4.jpg" alt="produkt4.jpg" class="produkt1-pic"></a>
+            <a href="#"></a><button type="button" class="buton-produkt">Продукт от брошурата</button></a>
+        </div>
+        <div class="div-opisanie">
+            <p>Кафемашина TAURUS BARI 15 bar, 1,500 ml, 850 W, ЧЕРНА</p>
+        </div>
+        <div class="div-opcii">
+            <p>( Виж опции за взимане и доставка )</p>
+
+        </div>
+        <div class="div-cena">
+            <p class="red"><span style="color: grey;font-size: 15px;">Цена:</span><span> 145</span><sup
+                    style="font-size: 15px;">00</sup><span style="font-size:15px ;"> лв.</span></p>
+        </div>
+        <div class="div-lihva">
+            <a href="#"><img src="./assets/images/lihva.png" alt="lihva.png" class="lihva-pic"></a>
+            <p class="div-lihva-p">лихва, такси и ГПР</p>
+        </div>
+        <div class="div-kupi">
+            <a href="#"><img src="./assets/images/butonKupi.png" alt="butonKupi.png" class="butonKupi-pic"></a>
+        </div>
+        <div class="div-sravni">
+            <a href="#"><img src="./assets/images/butonSravni.png" alt="butonSravni.png" class="butonSravni-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Сравни</p>
+            <a href="#"><img src="./assets/images/butonFavorit.png" alt="butonFavorit.png" class="butonFavorit-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Любими</p>
+        </div>
+    </div>
+    <div class="div-aktualni-predlojeniq-1">
+        <div class="div-aktualni-predlojeniq-1-top">
+            <a href="#"><img src="./assets/images/produkt5.jpg" alt="produkt5.jpg" class="produkt1-pic"></a>
+            <a href="#"></a><button type="button" class="buton-produkt">Продукт от брошурата</button></a>
+        </div>
+        <div class="div-opisanie">
+            <p>Електрически скутер-тротинетка APRILIA E-SR1 350W, ДО 25 КМ/Ч, ПРОБЕГ ДО 25 КМ
+                ...</p>
+        </div>
+        <div class="div-opcii">
+            <p>( Виж опции за взимане и доставка )</p>
+
+        </div>
+        <div class="div-cena">
+            <p class="red"><span style="color: grey;font-size: 15px;">Цена:</span><span> 1 299</span><sup
+                    style="font-size: 15px;">00</sup><span style="font-size:15px ;"> лв.</span></p>
+        </div>
+        <div class="div-lihva">
+            <a href="#"><img src="./assets/images/lihva.png" alt="lihva.png" class="lihva-pic"></a>
+            <p class="div-lihva-p">лихва, такси и ГПР</p>
+        </div>
+        <div class="div-kupi">
+            <a href="#"><img src="./assets/images/butonKupi.png" alt="butonKupi.png" class="butonKupi-pic"></a>
+        </div>
+        <div class="div-sravni">
+            <a href="#"><img src="./assets/images/butonSravni.png" alt="butonSravni.png" class="butonSravni-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Сравни</p>
+            <a href="#"><img src="./assets/images/butonFavorit.png" alt="butonFavorit.png" class="butonFavorit-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Любими</p>
+        </div>
+    </div>
+</div>
+
+<div class="div-oferti">
+    <img src="./assets/images/oferti1.jpg" alt="oferti1" class="oferti1">
+    <img src="./assets/images/oferti2.jpg" alt="oferti2" class="oferti2">
+    <img src="./assets/images/oferti3.gif" alt="oferti3" class="oferti3">
+</div>
+<div class="div-aktualni-predlojeniq">
+    <div class="div-aktualni-predlojeniq-1">
+        <div class="div-aktualni-predlojeniq-1-top">
+            <a href="#"><img src="./assets/images/produkt6.jpg" alt="produkt6.jpg" class="produkt1-pic"></a>
+            <a href="#"></a><button type="button" class="buton-produkt">Продукт от брошурата</button></a>
+        </div>
+        <div class="div-opisanie">
+            <p>Инверторен климатик TOSHIBA RAS-B13E2KVG-E/RAS-13E2AVG-E YUKAI...</p>
+        </div>
+        <div class="div-opcii">
+            <p>( Виж опции за взимане и доставка )</p>
+
+        </div>
+        <div class="div-cena">
+            <p class="red"><span style="color: grey;font-size: 15px;">Цена:</span><span> 1 599</span><sup
+                    style="font-size: 15px;">00</sup><span style="font-size:15px ;"> лв.</span></p>
+        </div>
+        <div class="div-lihva">
+            <a href="#"><img src="./assets/images/lihva.png" alt="lihva.png" class="lihva-pic"></a>
+            <p class="div-lihva-p">лихва, такси и ГПР</p>
+        </div>
+        <div class="div-kupi">
+            <a href="#"><img src="./assets/images/butonKupi.png" alt="butonKupi.png" class="butonKupi-pic"></a>
+        </div>
+        <div class="div-sravni">
+            <a href="#"><img src="./assets/images/butonSravni.png" alt="butonSravni.png" class="butonSravni-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Сравни</p>
+            <a href="#"><img src="./assets/images/butonFavorit.png" alt="butonFavorit.png" class="butonFavorit-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Любими</p>
+        </div>
+
+    </div>
+    <div class="div-aktualni-predlojeniq-1">
+        <div class="div-aktualni-predlojeniq-1-top">
+            <a href="#"><img src="./assets/images/produkt7.jpg" alt="produkt7.jpg" class="produkt1-pic"></a>
+            <a href="#"></a><button type="button" class="buton-produkt">Продукт от брошурата</button></a>
+        </div>
+        <div class="div-opisanie">
+            <p>SMART WATCH GARMIN FENIX 7 SAPPHIRE SOLAR 2540-21 47 MM, GPS,...</p>
+        </div>
+        <div class="div-opcii">
+            <p>( Виж опции за взимане и доставка )</p>
+
+        </div>
+        <div class="div-cena">
+            <p class="red"><span style="color: grey;font-size: 15px;">Цена:</span><span> 1 679</span><sup
+                    style="font-size: 15px;">00</sup><span style="font-size:15px ;"> лв.</span></p>
+        </div>
+        <div class="div-lihva">
+            <a href="#"><img src="./assets/images/lihva.png" alt="lihva.png" class="lihva-pic"></a>
+            <p class="div-lihva-p">лихва, такси и ГПР</p>
+        </div>
+        <div class="div-kupi">
+            <a href="#"><img src="./assets/images/butonKupi.png" alt="butonKupi.png" class="butonKupi-pic"></a>
+        </div>
+        <div class="div-sravni">
+            <a href="#"><img src="./assets/images/butonSravni.png" alt="butonSravni.png" class="butonSravni-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Сравни</p>
+            <a href="#"><img src="./assets/images/butonFavorit.png" alt="butonFavorit.png" class="butonFavorit-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Любими</p>
+        </div>
+    </div>
+    <div class="div-aktualni-predlojeniq-1">
+        <div class="div-aktualni-predlojeniq-1-top">
+            <a href="#"><img src="./assets/images/produkt8.jpg" alt="produkt8.jpg" class="produkt1-pic"></a>
+            <a href="#"></a><button type="button" class="buton-produkt">Продукт от брошурата</button></a>
+        </div>
+        <div class="div-opisanie">
+            <p>Телевизор LG OLED65C22LB 4K Ultra HD OLED SMART TV, WEBOS, 65.0 ", 164.0 см</p>
+        </div>
+        <div class="div-opcii">
+            <p>( Виж опции за взимане и доставка )</p>
+
+        </div>
+        <div class="div-cena">
+            <p class="red"><span style="color: grey;font-size: 15px;">Цена:</span><span> 3 999</span><sup
+                    style="font-size: 15px;">00</sup><span style="font-size:15px ;"> лв.</span></p>
+        </div>
+        <div class="div-lihva">
+            <a href="#"><img src="./assets/images/lihva.png" alt="lihva.png" class="lihva-pic"></a>
+            <p class="div-lihva-p">лихва, такси и ГПР</p>
+        </div>
+        <div class="div-kupi">
+            <a href="#"><img src="./assets/images/butonKupi.png" alt="butonKupi.png" class="butonKupi-pic"></a>
+        </div>
+        <div class="div-sravni">
+            <a href="#"><img src="./assets/images/butonSravni.png" alt="butonSravni.png" class="butonSravni-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Сравни</p>
+            <a href="#"><img src="./assets/images/butonFavorit.png" alt="butonFavorit.png" class="butonFavorit-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Любими</p>
+        </div>
+    </div>
+    <div class="div-aktualni-predlojeniq-1">
+        <div class="div-aktualni-predlojeniq-1-top">
+            <a href="#"><img src="./assets/images/produkt9.jpg" alt="produkt9.jpg" class="produkt1-pic"></a>
+            <a href="#"></a><button type="button" class="buton-produkt">Продукт от брошурата</button></a>
+        </div>
+        <div class="div-opisanie">
+            <p>УРЕД ЗА ГОТВЕНЕ PHILIPS HD9280/90 2000 W, КАПАЦИТЕТ НА ПРОДУКТИ...</p>
+        </div>
+        <div class="div-opcii">
+            <p>( Виж опции за взимане и доставка )</p>
+
+        </div>
+        <div class="div-cena">
+            <p class="red"><span style="color: grey;font-size: 15px;">Цена:</span><span> 369</span><sup
+                    style="font-size: 15px;">99</sup><span style="font-size:15px ;"> лв.</span></p>
+        </div>
+        <div class="div-lihva">
+            <a href="#"><img src="./assets/images/lihva.png" alt="lihva.png" class="lihva-pic"></a>
+            <p class="div-lihva-p">лихва, такси и ГПР</p>
+        </div>
+        <div class="div-kupi">
+            <a href="#"><img src="./assets/images/butonKupi.png" alt="butonKupi.png" class="butonKupi-pic"></a>
+        </div>
+        <div class="div-sravni">
+            <a href="#"><img src="./assets/images/butonSravni.png" alt="butonSravni.png" class="butonSravni-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Сравни</p>
+            <a href="#"><img src="./assets/images/butonFavorit.png" alt="butonFavorit.png" class="butonFavorit-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Любими</p>
+        </div>
+    </div>
+    <div class="div-aktualni-predlojeniq-1">
+        <div class="div-aktualni-predlojeniq-1-top">
+            <a href="#"><img src="./assets/images/produkt10.jpg" alt="produkt1.jpg" class="produkt1-pic"></a>
+            <a href="#"></a><button type="button" class="buton-produkt">Продукт от брошурата</button></a>
+        </div>
+        <div class="div-opisanie">
+            <p>УРЕД ЗА ГОТВЕНЕ PHILIPS HD9280/90 2000 W, КАПАЦИТЕТ НА ПРОДУКТИ...</p>
+        </div>
+        <div class="div-opcii">
+            <p>( Виж опции за взимане и доставка )</p>
+
+        </div>
+        <div class="div-cena">
+            <p class="red"><span style="color: grey;font-size: 15px;">Цена:</span><span> 249</span><sup
+                    style="font-size: 15px;">99</sup><span style="font-size:15px ;"> лв.</span></p>
+        </div>
+        <div class="div-lihva">
+            <a href="#"><img src="./assets/images/lihva.png" alt="lihva.png" class="lihva-pic"></a>
+            <p class="div-lihva-p">лихва, такси и ГПР</p>
+        </div>
+        <div class="div-kupi">
+            <a href="#"><img src="./assets/images/butonKupi.png" alt="butonKupi.png" class="butonKupi-pic"></a>
+        </div>
+        <div class="div-sravni">
+            <a href="#"><img src="./assets/images/butonSravni.png" alt="butonSravni.png" class="butonSravni-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Сравни</p>
+            <a href="#"><img src="./assets/images/butonFavorit.png" alt="butonFavorit.png" class="butonFavorit-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Любими</p>
+        </div>
+    </div>
+</div>
+
+<div class="div-promo">
+    <img src="./assets/images/promo.jpg" alt="promo" class="promo">
+</div>
+
+<div class="div-aktualni-predlojeniq">
+    <div class="div-aktualni-predlojeniq-1">
+        <div class="div-aktualni-predlojeniq-1-top">
+            <a href="#"><img src="./assets/images/produkt11.jpg" alt="produkt11.jpg" class="produkt1-pic"></a>
+            <a href="#"></a><button type="button" class="buton-produkt">Продукт от брошурата</button></a>
+        </div>
+        <div class="div-opisanie">
+            <p>Хладилник с фризер BEKO DS 227030 N 151.00 см...</p>
+        </div>
+        <div class="div-opcii">
+            <p>( Виж опции за взимане и доставка )</p>
+
+        </div>
+        <div class="div-cena">
+            <p class="red"><span style="color: grey;font-size: 15px;">Цена:</span><span> 499</span><sup
+                    style="font-size: 15px;">99</sup><span style="font-size:15px ;"> лв.</span></p>
+        </div>
+        <div class="div-lihva">
+            <a href="#"><img src="./assets/images/lihva.png" alt="lihva.png" class="lihva-pic"></a>
+            <p class="div-lihva-p">лихва, такси и ГПР</p>
+        </div>
+        <div class="div-kupi">
+            <a href="#"><img src="./assets/images/butonKupi.png" alt="butonKupi.png" class="butonKupi-pic"></a>
+        </div>
+        <div class="div-sravni">
+            <a href="#"><img src="./assets/images/butonSravni.png" alt="butonSravni.png" class="butonSravni-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Сравни</p>
+            <a href="#"><img src="./assets/images/butonFavorit.png" alt="butonFavorit.png" class="butonFavorit-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Любими</p>
+        </div>
+
+    </div>
+    <div class="div-aktualni-predlojeniq-1">
+        <div class="div-aktualni-predlojeniq-1-top">
+            <a href="#"><img src="./assets/images/produkt12.jpg" alt="produkt12.jpg" class="produkt1-pic"></a>
+            <a href="#"></a><button type="button" class="buton-produkt">Продукт от брошурата</button></a>
+        </div>
+        <div class="div-opisanie">
+            <p>Пералня CANDY CSO 1285 TE-S 8.0 kg, 1200 об/min</p>
+        </div>
+        <div class="div-opcii">
+            <p>( Виж опции за взимане и доставка )</p>
+
+        </div>
+        <div class="div-cena">
+            <p class="red"><span style="color: grey;font-size: 15px;">Цена:</span><span> 539</span><sup
+                    style="font-size: 15px;">99</sup><span style="font-size:15px ;"> лв.</span></p>
+        </div>
+        <div class="div-lihva">
+            <a href="#"><img src="./assets/images/lihva.png" alt="lihva.png" class="lihva-pic"></a>
+            <p class="div-lihva-p">лихва, такси и ГПР</p>
+        </div>
+        <div class="div-kupi">
+            <a href="#"><img src="./assets/images/butonKupi.png" alt="butonKupi.png" class="butonKupi-pic"></a>
+        </div>
+        <div class="div-sravni">
+            <a href="#"><img src="./assets/images/butonSravni.png" alt="butonSravni.png" class="butonSravni-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Сравни</p>
+            <a href="#"><img src="./assets/images/butonFavorit.png" alt="butonFavorit.png" class="butonFavorit-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Любими</p>
+        </div>
+    </div>
+    <div class="div-aktualni-predlojeniq-1">
+        <div class="div-aktualni-predlojeniq-1-top">
+            <a href="#"><img src="./assets/images/produkt13.jpg" alt="produkt13.jpg" class="produkt1-pic"></a>
+            <a href="#"></a><button type="button" class="buton-produkt">Продукт от брошурата</button></a>
+        </div>
+        <div class="div-opisanie">
+            <p>Хладилник с фризер LIEBHERR CU 281 161.20 см</p>
+        </div>
+        <div class="div-opcii">
+            <p>( Виж опции за взимане и доставка )</p>
+
+        </div>
+        <div class="div-cena">
+            <p class="red"><span style="color: grey;font-size: 15px;">Цена:</span><span> 759</span><sup
+                    style="font-size: 15px;">99</sup><span style="font-size:15px ;"> лв.</span></p>
+        </div>
+        <div class="div-lihva">
+            <a href="#"><img src="./assets/images/lihva.png" alt="lihva.png" class="lihva-pic"></a>
+            <p class="div-lihva-p">лихва, такси и ГПР</p>
+        </div>
+        <div class="div-kupi">
+            <a href="#"><img src="./assets/images/butonKupi.png" alt="butonKupi.png" class="butonKupi-pic"></a>
+        </div>
+        <div class="div-sravni">
+            <a href="#"><img src="./assets/images/butonSravni.png" alt="butonSravni.png" class="butonSravni-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Сравни</p>
+            <a href="#"><img src="./assets/images/butonFavorit.png" alt="butonFavorit.png" class="butonFavorit-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Любими</p>
+        </div>
+    </div>
+    <div class="div-aktualni-predlojeniq-1">
+        <div class="div-aktualni-predlojeniq-1-top">
+            <a href="#"><img src="./assets/images/produkt14.jpg" alt="produkt14.jpg" class="produkt1-pic"></a>
+            <a href="#"></a><button type="button" class="buton-produkt">Продукт от брошурата</button></a>
+        </div>
+        <div class="div-opisanie">
+            <p>Смартфон GSM MOTOROLA G42 6.40 ", 128 GB, RAM 6 GB, 50+8+2 MP</p>
+        </div>
+        <div class="div-opcii">
+            <p>( Виж опции за взимане и доставка )</p>
+
+        </div>
+        <div class="div-cena">
+            <p class="red"><span style="color: grey;font-size: 15px;">Цена:</span><span> 429</span><sup
+                    style="font-size: 15px;">00</sup><span style="font-size:15px ;"> лв.</span></p>
+        </div>
+        <div class="div-lihva">
+            <a href="#"><img src="./assets/images/lihva.png" alt="lihva.png" class="lihva-pic"></a>
+            <p class="div-lihva-p">лихва, такси и ГПР</p>
+        </div>
+        <div class="div-kupi">
+            <a href="#"><img src="./assets/images/butonKupi.png" alt="butonKupi.png" class="butonKupi-pic"></a>
+        </div>
+        <div class="div-sravni">
+            <a href="#"><img src="./assets/images/butonSravni.png" alt="butonSravni.png" class="butonSravni-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Сравни</p>
+            <a href="#"><img src="./assets/images/butonFavorit.png" alt="butonFavorit.png" class="butonFavorit-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Любими</p>
+        </div>
+    </div>
+    <div class="div-aktualni-predlojeniq-1">
+        <div class="div-aktualni-predlojeniq-1-top">
+            <a href="#"><img src="./assets/images/produkt15.jpg" alt="produkt15.jpg" class="produkt1-pic"></a>
+            <a href="#"></a><button type="button" class="buton-produkt">Продукт от брошурата</button></a>
+        </div>
+        <div class="div-opisanie">
+            <p>Телевизор PHILIPS 50PUS8506 4K Ultra HD LED SMART TV, ANDROID TV, 50.0 "...</p>
+        </div>
+        <div class="div-opcii">
+            <p>( Виж опции за взимане и доставка )</p>
+
+        </div>
+        <div class="div-cena">
+            <p class="red"><span style="color: grey;font-size: 15px;">Цена:</span><span> 889</span><sup
+                    style="font-size: 15px;">00</sup><span style="font-size:15px ;"> лв.</span></p>
+        </div>
+        <div class="div-lihva">
+            <a href="#"><img src="./assets/images/lihva.png" alt="lihva.png" class="lihva-pic"></a>
+            <p class="div-lihva-p">лихва, такси и ГПР</p>
+        </div>
+        <div class="div-kupi">
+            <a href="#"><img src="./assets/images/butonKupi.png" alt="butonKupi.png" class="butonKupi-pic"></a>
+        </div>
+        <div class="div-sravni">
+            <a href="#"><img src="./assets/images/butonSravni.png" alt="butonSravni.png" class="butonSravni-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Сравни</p>
+            <a href="#"><img src="./assets/images/butonFavorit.png" alt="butonFavorit.png" class="butonFavorit-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Любими</p>
+        </div>
+    </div>
+</div>
+<div class="div-aktualni-predlojeniq">
+    <div class="div-aktualni-predlojeniq-1">
+        <div class="div-aktualni-predlojeniq-1-top">
+            <a href="#"><img src="./assets/images/produkt16.jpg" alt="produkt16.jpg" class="produkt1-pic"></a>
+            <a href="#"></a><button type="button" class="buton-produkt">Продукт от брошурата</button></a>
+        </div>
+        <div class="div-opisanie">
+            <p>Смартфон GSM SAMSUNG GALAXY XCOVER 6 PRO 6.60 ", 128 GB, RAM 6 GB, 50+8 MP, 5G
+                ...</p>
+        </div>
+        <div class="div-opcii">
+            <p>( Виж опции за взимане и доставка )</p>
+
+        </div>
+        <div class="div-cena">
+            <p class="red"><span style="color: grey;font-size: 15px;">Цена:</span><span> 1 149</span><sup
+                    style="font-size: 15px;">00</sup><span style="font-size:15px ;"> лв.</span></p>
+        </div>
+        <div class="div-lihva">
+            <a href="#"><img src="./assets/images/lihva.png" alt="lihva.png" class="lihva-pic"></a>
+            <p class="div-lihva-p">лихва, такси и ГПР</p>
+        </div>
+        <div class="div-kupi">
+            <a href="#"><img src="./assets/images/butonKupi.png" alt="butonKupi.png" class="butonKupi-pic"></a>
+        </div>
+        <div class="div-sravni">
+            <a href="#"><img src="./assets/images/butonSravni.png" alt="butonSravni.png" class="butonSravni-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Сравни</p>
+            <a href="#"><img src="./assets/images/butonFavorit.png" alt="butonFavorit.png" class="butonFavorit-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Любими</p>
+        </div>
+
+    </div>
+    <div class="div-aktualni-predlojeniq-1">
+        <div class="div-aktualni-predlojeniq-1-top">
+            <a href="#"><img src="./assets/images/produkt17.jpg" alt="produkt17.jpg" class="produkt1-pic"></a>
+            <a href="#"></a><button type="button" class="buton-produkt">Продукт от брошурата</button></a>
+        </div>
+        <div class="div-opisanie">
+            <p>Месомелачкa BOSCH COMPACT POWER MFW3X15B</p>
+        </div>
+        <div class="div-opcii">
+            <p>( Виж опции за взимане и доставка )</p>
+
+        </div>
+        <div class="div-cena">
+            <p class="red"><span style="color: grey;font-size: 15px;">Цена:</span><span> 259</span><sup
+                    style="font-size: 15px;">99</sup><span style="font-size:15px ;"> лв.</span></p>
+        </div>
+        <div class="div-lihva">
+            <a href="#"><img src="./assets/images/lihva.png" alt="lihva.png" class="lihva-pic"></a>
+            <p class="div-lihva-p">лихва, такси и ГПР</p>
+        </div>
+        <div class="div-kupi">
+            <a href="#"><img src="./assets/images/butonKupi.png" alt="butonKupi.png" class="butonKupi-pic"></a>
+        </div>
+        <div class="div-sravni">
+            <a href="#"><img src="./assets/images/butonSravni.png" alt="butonSravni.png" class="butonSravni-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Сравни</p>
+            <a href="#"><img src="./assets/images/butonFavorit.png" alt="butonFavorit.png" class="butonFavorit-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Любими</p>
+        </div>
+    </div>
+    <div class="div-aktualni-predlojeniq-1">
+        <div class="div-aktualni-predlojeniq-1-top">
+            <a href="#"><img src="./assets/images/produkt18.jpg" alt="produkt18.jpg" class="produkt1-pic"></a>
+            <a href="#"></a><button type="button" class="buton-produkt">Продукт от брошурата</button></a>
+        </div>
+        <div class="div-opisanie">
+            <p>Фурнa за вграждане CANDY FCP 602 X/E 65 L, А+</p>
+        </div>
+        <div class="div-opcii">
+            <p>( Виж опции за взимане и доставка )</p>
+
+        </div>
+        <div class="div-cena">
+            <p class="red"><span style="color: grey;font-size: 15px;">Цена:</span><span> 349</span><sup
+                    style="font-size: 15px;">99</sup><span style="font-size:15px ;"> лв.</span></p>
+        </div>
+        <div class="div-lihva">
+            <a href="#"><img src="./assets/images/lihva.png" alt="lihva.png" class="lihva-pic"></a>
+            <p class="div-lihva-p">лихва, такси и ГПР</p>
+        </div>
+        <div class="div-kupi">
+            <a href="#"><img src="./assets/images/butonKupi.png" alt="butonKupi.png" class="butonKupi-pic"></a>
+        </div>
+        <div class="div-sravni">
+            <a href="#"><img src="./assets/images/butonSravni.png" alt="butonSravni.png" class="butonSravni-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Сравни</p>
+            <a href="#"><img src="./assets/images/butonFavorit.png" alt="butonFavorit.png" class="butonFavorit-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Любими</p>
+        </div>
+    </div>
+    <div class="div-aktualni-predlojeniq-1">
+        <div class="div-aktualni-predlojeniq-1-top">
+            <a href="#"><img src="./assets/images/produkt19.jpg" alt="produkt19.jpg" class="produkt1-pic"></a>
+            <a href="#"></a><button type="button" class="buton-produkt">Продукт от брошурата</button></a>
+        </div>
+        <div class="div-opisanie">
+            <p>Конзола NINTENDO SWITCH OLED RED&BLUE 64GB</p>
+        </div>
+        <div class="div-opcii">
+            <p>( Виж опции за взимане и доставка )</p>
+
+        </div>
+        <div class="div-cena">
+            <p class="red"><span style="color: grey;font-size: 15px;">Цена:</span><span> 749</span><sup
+                    style="font-size: 15px;">00</sup><span style="font-size:15px ;"> лв.</span></p>
+        </div>
+        <div class="div-lihva">
+            <a href="#"><img src="./assets/images/lihva.png" alt="lihva.png" class="lihva-pic"></a>
+            <p class="div-lihva-p">лихва, такси и ГПР</p>
+        </div>
+        <div class="div-kupi">
+            <a href="#"><img src="./assets/images/butonKupi.png" alt="butonKupi.png" class="butonKupi-pic"></a>
+        </div>
+        <div class="div-sravni">
+            <a href="#"><img src="./assets/images/butonSravni.png" alt="butonSravni.png" class="butonSravni-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Сравни</p>
+            <a href="#"><img src="./assets/images/butonFavorit.png" alt="butonFavorit.png" class="butonFavorit-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Любими</p>
+        </div>
+    </div>
+    <div class="div-aktualni-predlojeniq-1">
+        <div class="div-aktualni-predlojeniq-1-top">
+            <a href="#"><img src="./assets/images/produkt20.jpg" alt="produkt20.jpg" class="produkt1-pic"></a>
+            <a href="#"></a><button type="button" class="buton-produkt">Продукт от брошурата</button></a>
+        </div>
+        <div class="div-opisanie">
+            <p>Смартфон GSM SONY XPERIA 1 IV 6.50 ", 256 GB, RAM 12 GB, 12+12+12MP+3D...</p>
+        </div>
+        <div class="div-opcii">
+            <p>( Виж опции за взимане и доставка )</p>
+
+        </div>
+        <div class="div-cena">
+            <p class="red"><span style="color: grey;font-size: 15px;">Цена:</span><span> 2 599</span><sup
+                    style="font-size: 15px;">00</sup><span style="font-size:15px ;"> лв.</span></p>
+        </div>
+        <div class="div-lihva">
+            <a href="#"><img src="./assets/images/lihva.png" alt="lihva.png" class="lihva-pic"></a>
+            <p class="div-lihva-p">лихва, такси и ГПР</p>
+        </div>
+        <div class="div-kupi">
+            <a href="#"><img src="./assets/images/butonKupi.png" alt="butonKupi.png" class="butonKupi-pic"></a>
+        </div>
+        <div class="div-sravni">
+            <a href="#"><img src="./assets/images/butonSravni.png" alt="butonSravni.png" class="butonSravni-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Сравни</p>
+            <a href="#"><img src="./assets/images/butonFavorit.png" alt="butonFavorit.png" class="butonFavorit-pic"></a>
+            <p style="color: gray;margin-right: 10px;margin-left: 10px;font-family: 'Times New Roman', Times, serif;">
+                Любими</p>
+        </div>
+    </div>
+</div>
+<div class="div-rabotno-vreme">
+    <div class="div-rabotno-vreme-1">
+        <div class="div-rabotno-vreme-goren">
+            <div class="rv-div">
+                <img src="./assets/images/rvtelefon.png" alt="rvtelefon.png" class="rv">
+            </div>
+        </div>
+        <div class="div-rabotno-vreme-dolen">
+            <h1 class="div-rabotno-vreme-dolen-h1">Поръчай по телефон или Viber,
+                получи удома</h1>
+        </div>
+    </div>
+    <div class="div-rabotno-vreme-2">
+        <div class="div-rabotno-vreme-goren">
+            <div class="rv-div">
+                <img src="./assets/images/rvchasovnik.svg" alt="rvchasovnik.svg" class="rv">
+            </div>
+        </div>
+        <div class="div-rabotno-vreme-dolen">
+            <h1 class="div-rabotno-vreme-dolen-h1">Работно
+                време</h1>
+        </div>
+    </div>
+    <div class="div-rabotno-vreme-3">
+        <div class="div-rabotno-vreme-goren">
+            <div class="rv-div">
+                <img src="./assets/images/rvpodaruk.png" alt="rvpodaruk.png" class="rv">
+            </div>
+        </div>
+        <div class="div-rabotno-vreme-dolen">
+            <h1 class="div-rabotno-vreme-dolen-h1">Идеи за
+                подаръци</h1>
+        </div>
+    </div>
+    <div class="div-rabotno-vreme-4">
+        <div class="div-rabotno-vreme-goren">
+            <div class="rv-div">
+                <img src="./assets/images/rvkushta.svg" alt="rvkushta.svg" class="rv">
+            </div>
+        </div>
+        <div class="div-rabotno-vreme-dolen">
+            <h1 class="div-rabotno-vreme-dolen-h1">Купи онлайн и
+                вземи от магазин</h1>
+        </div>
+    </div>
+    <div class="div-rabotno-vreme-5">
+        <div class="div-rabotno-vreme-goren">
+            <div class="rv-div">
+                <img src="./assets/images/rvkamion.svg" alt="rvkamion.svg" class="rv">
+            </div>
+        </div>
+        <div class="div-rabotno-vreme-dolen">
+            <h1 class="div-rabotno-vreme-dolen-h1">Транспорт до входа
+                на сградата</h1>
+        </div>
+    </div>
+</div>
+
+<div class="div-aboniraise">
+    <div class="div-aboniraise-1">
+        <img src="./assets/images/abonirai.png" alt="abonirai.png" class="pic-abonirai">
+    </div>
+    <div class="div-aboniraise-2">
+        <input type="search" class="input-aboniraise" value="Твоят E-mail">
+        <a href="#"><img src="./assets/images/pismo.png" alt="pismo.png" class="pismo-aboniraise"></a>
+    </div>
+    <div class="div-aboniraise-3">
+        <p class="div-aboniraise-3-p">С абонамента се съгласявате предоставените от Вас лични данни да бъдат обработвани
+            за целите и по начина посочени в общите условия, включително, но не само, за да получавате информация за
+            актуални промоции и други активности на Технополис.</p>
+    </div>
+</div>
+
+<div class="div-footer">
+    <div class="div-footer-1">
+        <h1 class="div-footer-1-h1">Технополис</h1>
+        <ul class="div-footer-1-ul">
+            <li class="div-footer-1-li">Компанията</li>
+            <li class="div-footer-1-li">Работа при нас</li>
+            <li class="div-footer-1-li">Новини</li>
+            <li class="div-footer-1-li">Общи условия</li>
+        </ul>
+    </div>
+    <div class="div-footer-2">
+        <h1 class="div-footer-1-h1">Контакти</h1>
+        <ul class="div-footer-1-ul">
+            <li class="div-footer-1-li">Контакти</li>
+            <li class="div-footer-1-li">Магазини</li>
+            <li class="div-footer-1-li">Сервизи</li>
+        </ul>
+    </div>
+    <div class="div-footer-3">
+        <h1 class="div-footer-1-h1">За клиента</h1>
+        <ul class="div-footer-1-ul">
+            <li class="div-footer-1-li">Съвети</li>
+            <li class="div-footer-1-li">Транспорт</li>
+            <li class="div-footer-1-li">Доставка при онлайн покупка</li>
+            <li class="div-footer-1-li">Доставка до врата при покупка от физическите магазини</li>
+            <li class="div-footer-1-li">Вземи от магазин</li>
+            <li class="div-footer-1-li">Услуги</li>
+            <li class="div-footer-1-li">Връщане на поръчка</li>
+        </ul>
+    </div>
+    <div class="div-footer-4">
+        <h1 class="div-footer-1-h1">Обща информация</h1>
+        <ul class="div-footer-1-ul">
+            <li class="div-footer-1-li">Помощ</li>
+            <li class="div-footer-1-li">Как да поръчам</li>
+            <li class="div-footer-1-li">Как да върна продукт?</li>
+            <li class="div-footer-1-li">Рециклиране</li>
+        </ul>
+    </div>
+
+</div>
+<div class="div-footer2">
+    <img src="./assets/images/footer2.png" alt="footer2.png" class="pic-div-footer2">
+</div>
+
+</body>
+
+</html>

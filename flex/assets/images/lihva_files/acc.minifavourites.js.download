@@ -1,0 +1,135 @@
+ACC.minifavourites = {
+	
+	$layer:$('#miniFavouritesLayer'),
+
+	bindMiniFavourites: function ()
+	{
+		$(document).on('mouseenter', '.miniFavourites', this.showMiniFavourites);
+		$(document).on('mouseleave', '.miniFavourites', this.hideMiniFavourites);
+	},
+	
+	showMiniFavourites: function ()
+	{
+
+		if($('#miniFavouritesLayer').data("hover"))
+		{
+			return;
+		}
+		
+		if($('#miniFavouritesLayer').data("needRefresh") != false){
+			ACC.minifavourites.getMiniFavouritesData(function(){
+				$('#miniFavouritesLayer').data("hover", true);
+				$('#miniFavouritesLayer').data("needRefresh", false);
+			})
+		}
+		
+		$('#miniFavouritesLayer').fadeIn(function(){
+			$('#miniFavouritesLayer').data("hover", true);
+		});
+	},
+	
+	hideMiniFavourites: function ()
+	{
+		$('#miniFavouritesLayer').fadeOut(function(){
+			$('#miniFavouritesLayer').data("hover", false);
+		});
+	},
+	
+	getMiniFavouritesData : function(callback)
+	{
+		$.ajax({
+			url: $('#miniFavouritesLayer').attr("data-rolloverPopupUrl"),
+			cache: false,
+			type: 'GET',
+			success: function (result)
+			{
+				$('#miniFavouritesLayer').html(result);
+				callback();
+			}
+		});	
+	},
+
+	refreshMiniFavouritesCount : function()
+	{
+		$.ajax({
+			dataType: "json",
+			url: $('#miniFavouritesLayer').attr("data-refreshMiniFavouritesUrl") + Math.floor(Math.random() * 101) * (new Date().getTime()),
+			success: function (data)
+			{
+				
+				$(".miniFavourites .count").html(data.miniCartCount);
+				$(".miniFavourites .price").html(data.miniCartPrice);
+				$('#miniFavouritesLayer').data("needRefresh", true);
+			}
+		});
+	},
+
+	removeMiniFavouritesItem : function(entryNumber, url)
+	{
+		$.ajax({
+			type: "POST",
+			dataType: "json",
+			url: url,
+			data: { entryNumber: entryNumber },
+			success: function (data)
+			{
+				$('#favourites-count').html(data.totalItemsCount);
+			}
+		});
+	},
+	
+	addFavouritesItem : function(productCode, url)
+	{
+		$.ajax({
+			dataType: "json",
+			url: url,
+			data: { productCode: productCode },
+			success: function (data)
+			{
+				if(true == data.redirectToLogin) {
+					document.location.href= ACC.config.contextPath + "/login";
+				} else {
+					$('#favourites-count').html(data.totalItemsCount);
+					bindModal('modal_favorites');
+				}
+			}
+		});
+	},
+
+	addFavouritesProduct : function(productCode, url, loginUrl)
+	{
+		$.ajax({
+			type: "GET",
+			dataType: "json",
+			url: url,
+			data: { productCode: productCode },
+			success: function (data)
+			{
+				if(data.redirectToLogin)
+				{
+					window.location = loginUrl;
+				}
+			}
+		});
+	},
+
+	
+	removeAllMiniFavouritesItems : function()
+	{
+		$.ajax({
+			type: "POST",
+			url: $('#miniFavouritesLayer').attr("data-removeAllMiniFavouritesItemsUrl"),
+			success: function (data)
+			{
+				$('#miniFavouritesLayer').data("needRefresh", true);
+				$('#miniFavouritesLayer').load($('#miniFavouritesLayer').attr('data-rolloverPopupUrl'));
+				$('.favorites > strong').html(data.totalItemsCount);
+			}
+		});
+	}
+};
+
+$(document).ready(function ()
+{
+	ACC.minifavourites.bindMiniFavourites();
+});

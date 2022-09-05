@@ -1,0 +1,78 @@
+ACC.recentproducts = {			
+		
+	init : function(productCode)
+	{
+		ACC.comparison.showCompareBox();
+	},
+	
+	showRecentProductsComponent : function()
+	{
+		$.ajax({
+			url: $('#recent-products').attr('data-responsiveRecentProductsUrl'),
+			type: 'GET',
+			success: function (result)
+			{				
+				$('#recent-products').prepend(result);	
+				if( $('#recent-products').find('.products-slider').length > 0 ){
+					
+					$('#recent-products').find('.products-slider').each(function(i, e){
+						
+						$('.slider', e).slick({
+							dots: true,
+							arrows: false,
+							adaptiveHeight: true,
+							speed: 900,
+							slidesToShow: 6,
+							slidesToScroll: 6,
+							responsive: [
+								{
+									breakpoint: 1400,
+									settings: {
+										slidesToShow: 5,
+										slidesToScroll: 5
+									}
+								},
+								{
+									breakpoint: 1100,
+									settings: {
+										slidesToShow: 4,
+										slidesToScroll: 4
+									}
+								},
+								{
+									breakpoint: 970,
+									settings: {
+										slidesToShow: 3,
+										slidesToScroll: 3
+									}
+								},
+								{
+									breakpoint: 500,
+									settings: {
+										slidesToShow: 2,
+										slidesToScroll: 2
+									}
+								}
+							]
+						});
+						
+					});
+					
+				}
+
+			},
+			error: function(xhr, error){
+			    //console.debug(xhr); console.debug(error);
+			}
+		});	
+	}
+	
+};
+
+$(document).ready(function ()
+{
+	if ($("#recent-products").length > 0){
+		ACC.recentproducts.showRecentProductsComponent();
+	}
+					
+});

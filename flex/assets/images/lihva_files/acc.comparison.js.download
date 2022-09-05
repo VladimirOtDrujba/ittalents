@@ -1,0 +1,225 @@
+ACC.comparison = {			
+		checkItems: function() {
+		if( $('#compare ul li:not(#compare ul li.nav)').length < 1){
+			$('#compare').hide();
+		}		
+	},
+
+	placeCompareBox: function() {		
+		if($('#compare .close').is('.open')){
+			$('#compare .close').removeClass('open');
+			$('#compare').css({ 'bottom' : -$('#compare').outerHeight() + 16 }).promise().done(function(){
+				setTimeout(function(){
+					$('#compare').css('visibility', 'visible');
+				}, 600);
+			});
+		}
+	},		
+		
+	init : function(productCode)
+	{
+//		$(document).on('click', '#compare .close', this.showHideCompareBox);
+		//ACC.comparison.showCompareBox();
+//		ACC.comparison.checkItems();
+//		ACC.comparison.placeCompareBox();
+	
+		
+		
+	},
+	
+	showCompareBox: function ()
+	{	
+		this.initialCompareBoxData();
+	},
+
+	removeProductForComparison : function(productCode, reloadPage)
+	{
+		$.ajax({
+			type: "GET",
+			dataType: "json",
+			url: "/comparison/remove",
+			data: { productCode: productCode },
+			success: function (data)
+			{	
+				if(reloadPage) {
+					location.reload();
+				}
+			}
+		});
+	},
+	
+	removeAllProductsForComparison : function(url, reloadPage)
+	{
+		$.ajax({
+			type: "GET",
+			dataType: "json",
+			url: "/comparison/removeAll",			
+			success: function (data)
+			{									
+				if(reloadPage) {
+					window.location.href = url;
+				}
+			}
+		});
+	},
+	
+	openComparePage: function(url) {
+		var productsnbr = $('#compare_span').text();
+		
+		if( parseInt(productsnbr) < 2 ) {
+			bindModal('modal_compare_alert');
+		} else {
+			window.location.href = url;
+		}
+	},
+	
+	initialCompareBoxData : function()
+	{
+		$.ajax({
+			url: $('#compare').attr('data-rolloverPopupUrl'),
+			cache: false,
+			type: 'GET',
+			success: function (result)
+			{				
+				$('#compare').find("ul").remove();
+				$('#compare').find(".message").remove();
+				$('#compare').prepend(result);	
+
+				if( $('#compare ul li:not(#compare ul li.nav)').length > 0) {
+					$('#compare').show();
+					$('#compare').css('bottom', - $('#compare').outerHeight() + 16).promise().done(function(){
+						$('#compare .close').removeClass('open');
+					});
+				}
+
+			},
+			error: function(xhr, error){
+			        //console.debug(xhr); console.debug(error);
+			}
+		});	
+	},
+	
+	
+	refreshCompareBoxData : function()
+	{
+		$.ajax({
+			url: $('#compare').attr('data-rolloverPopupUrl'),
+			cache: false,
+			type: 'GET',
+			success: function (result)
+			{				
+				$('#compare').find("ul").remove();
+				$('#compare').find(".message").remove();
+				$('#compare').prepend(result);				
+
+			},
+			error: function(xhr, error){
+			        //console.debug(xhr); console.debug(error);
+			}
+		});	
+	},
+	
+	addProductForComparison : function(productCode)
+	{				
+		$.ajax({
+			dataType: "json",
+			url: "/comparisonTechno/add",
+			data: { productCode: productCode },
+			success: function (data)
+			{								
+				//$('#compare_span').html(data);
+				//$('#to-compare-footer').html(data);
+				//$('.to-compare').show();			
+			}
+		});
+	},
+	
+	showHideCompareBox : function() {
+		if($('#compare .close').is('.open')){
+			$('#compare').css('bottom', - $('#compare').outerHeight() + 16).promise().done(function(){
+				$('#compare .close').removeClass('open');
+			});
+		} else {
+			$('#compare').css('bottom', 0).promise().done(function(){
+				$('#compare .close').addClass('open');
+			});
+		}
+	},
+	
+	getComparisonProduct : function (product_code) {
+		$.ajax({
+			type: "GET",
+			dataType: "html",
+			url: ACC.config.contextPath + "/p/" + product_code + "/details" ,
+			data: { productCode: product_code },
+			success: function (data)
+			{	
+				$('.js-compare__list').append(data);	
+				if (!$('html').hasClass('compare-line-visible')) {
+					$('html').addClass('compare-line-visible');
+				}
+			}
+		});
+	},
+	
+	toggleCompareButton : function () {
+		$.ajax({
+			   url: ACC.config.contextPath + "/compare/productsToCompareNumber",
+			   dataType: "json",
+			   cache: false,
+			   success:function(data)
+			   {		
+				   if( data != 0 ) {
+						$('.to-compare').addClass('is-active');
+					} else {
+						$('.to-compare').removeClass('is-active');
+					}
+
+					if (data === 0) {
+						$('html').removeClass('compare-line-visible');
+					}
+					$('.js-compare__counter, .to-compare i').html(data);
+					$('#compare_span').html(data);
+					$('#to-compare-footer').html(data);
+			   }
+		 });
+	},
+	
+	getNumberOfProductsToCompare : function () {
+	    return $.ajax({
+	        type: "GET",
+	        url: ACC.config.contextPath + "/compare/productsToCompareNumber" ,
+	        async: false
+	    }).responseText;
+	},
+	
+	compareClick : function(product_code) {
+		var productsnbr = ACC.comparison.getNumberOfProductsToCompare();
+		if( parseInt(productsnbr) >= 3 ) {
+			bindModal('modal_compare');
+			return;
+		}
+	
+		ACC.comparison.addProductForComparison(product_code);
+		
+		setTimeout(function(){
+			
+			ACC.comparison.toggleCompareButton();
+			setTimeout(function(){
+				var productsnbrnew = ACC.comparison.getNumberOfProductsToCompare();
+				if(productsnbr != productsnbrnew) 
+				{
+					ACC.comparison.getComparisonProduct(product_code);
+				} else 
+				{
+					bindModal('modal_compare_added');
+				}
+			}, 300);
+		}, 300);
+	},
+};
+
+$(document).ready(function ()
+{
+	ACC.comparison.init();				
+});

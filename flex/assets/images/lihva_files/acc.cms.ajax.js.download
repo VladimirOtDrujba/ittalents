@@ -1,0 +1,48 @@
+ACC.cms.ajax = {
+
+    loadAjaxCmsComponent: function (elementRef) {
+
+        var url = $(elementRef).attr('data-ajaxUrl');
+
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function (result) {
+
+                if ($.trim(result)) {
+                    $(elementRef).prepend(result);
+                    ACC.cms.ajax.bindJsEvents(result);
+                }
+
+            },
+            error: function (xhr, error) {
+                console.debug(xhr);
+                console.debug(error);
+            }
+        });
+
+    },
+
+    bindJsEvents: function(ajaxHtml)
+    {
+
+        if($(ajaxHtml).find('#reviewFormId').length > 0)
+        {
+            $("#reviewFormId").submit(function (e) {
+                ACC.productReview.submit($(this), e, "reviewFormMessage", false);
+            });
+        }
+
+        ACC.productTabs.bindAll();
+    }
+}
+
+$(document).ready(function () {
+
+        $('.js-empty-component-ajax').each(function (index) {
+            ACC.cms.ajax.loadAjaxCmsComponent($(this));
+        });
+
+});
+
+

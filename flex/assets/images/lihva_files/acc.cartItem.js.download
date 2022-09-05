@@ -1,0 +1,21 @@
+ACC.cartItem = {
+
+
+    bindDeliveryModeChanged : function()
+    {
+        $('.entryDeliveryModeRadio').on('change', function()
+        {
+            $(this).closest("form").submit();
+        });
+    }
+
+};
+
+$(document).ready(function ()
+{
+    with(ACC.cartItem)
+    {
+        bindDeliveryModeChanged();
+    }
+});
+

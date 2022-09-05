@@ -1,0 +1,139 @@
+function markOrUnmarkOrderEntryForReturn (orderCode, productCode, index){
+
+    var url;
+    if($('#pd_'+index + '_id').is(':checked')) {
+        url = ACC.config.contextPath + "/return-product/markEntryForReturnAndRefreshTotals";
+    } else {
+        url = ACC.config.contextPath + "/return-product/unmarkEntryForReturnAndRefreshTotals";
+    }
+
+    var qty = $('#pd_' + index + '_id_option_1').val();
+
+    $.ajax({
+        type: "GET",
+        url: url,
+        data : {orderNumber: orderCode, productCode:productCode, qty:qty},
+        dataType: "html",
+        success: function (data)
+        {
+            $('#return-total-price-value').html(data);
+
+            var returnAmount = parseFloat($('.js-total__amount').html());
+            returnAmount == 0 ? $('.js-next__step').prop('disabled', true) : $('.js-next__step').prop('disabled', false);
+        }
+    });
+}
+
+
+$(document).on('change', '.js-return__checkbox', function () {
+
+    var returnList = '';
+
+    this.checked ? $(this).parents('.return-list__item').addClass('active') : $(this).parents('.return-list__item').removeClass('active');
+
+    $('.js-return__checkbox:checked').each(function () {
+
+        returnList += '<div class="return-list__item"><div class="order-product">' + $(this).parents('.return-list__item').find('.order-product').html() + '</div></div>';
+    });
+
+    $('.js-return__list').html(returnList);
+
+    var orderNumber = $('#orderNumber').val();
+    var productCode = $(this).attr('data-productCode');
+    var index = $(this).attr('data-index');
+
+    markOrUnmarkOrderEntryForReturn(orderNumber, productCode, index);
+
+    //update the value of the hidden field, containing the value of the checkbox, that gets submitted in the form
+    //the reason for using this hidden field is that in case of disabled checkbox (i.e. child entry) always false gets send
+    $('#pd_'+ index +'_id_hidden').val(this.checked);
+
+    if($(this).attr("data-child-entry-indices") && $(this).attr("data-child-entry-indices") !== "") {
+        var aChildIncies = $(this).attr('data-child-entry-indices').split(",");
+        var i;
+        for (i = 0; i < aChildIncies.length; i++) {
+            $('#pd_' + aChildIncies[i] + '_id').prop('checked', this.checked);
+            $('#pd_' + aChildIncies[i] + '_id').trigger('change');
+        }
+    }
+
+
+}).trigger('change');
+
+
+$(document).on('change', '.js-return__quantity', function () {
+    var orderNumber = $('#orderNumber').val();
+    var productCode = $(this).attr('data-productCode');
+    var index = $(this).attr('data-index');
+
+    markOrUnmarkOrderEntryForReturn(orderNumber, productCode, index);
+
+    var checkbox = $('#pd_'+ index +'_id');
+    if($(checkbox).attr("data-child-entry-indices") && $(checkbox).attr("data-child-entry-indices") !== "") {
+        var aChildIncies = $(checkbox).attr('data-child-entry-indices').split(",");
+        var i;
+        for (i = 0; i < aChildIncies.length; i++) {
+            $('#pd_' + aChildIncies[i] + '_id_option_1').val($(this).val())
+            $('#pd_' + aChildIncies[i] + '_id_option_1').trigger('change');
+        }
+    }
+
+});
+
+$('.js-delivery__type').on('change', function () {
+
+    if ($(this).is(':checked')) {
+
+        $('.js-form__box').addClass('el-hide');
+        $(this).parents('.form-box').find('.js-form__box').removeClass('el-hide');
+
+        if (this.value === 'courier') {
+            $('.js-courier__price').removeClass('el-hide');
+        } else {
+            $('.js-courier__price').addClass('el-hide');
+        }
+    }
+
+}).trigger('change');
+
+$(document).on('change', '#anonymous-return-order-number', function () {
+    var orderNumber = $(this).val();
+    var url = $('#returnUrlSpan').attr('data-return-url') + '?orderNumber=' + orderNumber;
+    $('#anonymous-return-form').attr('action', url);
+});
+
+$(document).ready(function () {
+
+    $('.js-return__checkbox:checked').each(function () {
+        this.checked ? $(this).parents('.return-list__item').addClass('active') : $(this).parents('.return-list__item').removeClass('active');
+    });
+
+    var returnList = '';
+    $('.js-return__checkbox:checked').each(function () {
+
+        returnList += '<div class="return-list__item"><div class="order-product">' + $(this).parents('.return-list__item').find('.order-product').html() + '</div></div>';
+    });
+
+    $('.js-return__list').html(returnList);
+
+    // validate the form when it is submitted
+
+    $.validator.addMethod("bgiban", function(value, element) {
+        return this.optional(element) || /^bg/i.test(value);
+    }, "Please enter a valid BG iban");
+
+    $('#return-product-form-step2').validate();
+
+    $('#anonymous-return-form').validate();
+
+
+    $(`.js-return-request-button[data-open-return-request="true"]`).trigger('click');
+
+    if( $('tr.active').length ) {
+        $('html, body').stop(true, true).delay(500).animate({ scrollTop: document.querySelector('tr.active').getBoundingClientRect().top }, 1200, 'easeOutCubic');
+    }
+
+    $('#returnProductsEmailForm').validate();
+
+    $('#returnProductsEmailAndOrderForm').validate();
+});

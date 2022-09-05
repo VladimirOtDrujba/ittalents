@@ -1,0 +1,17 @@
+ACC.returnProduct = {
+        submitReturnProduct: function (form, e, resultId, clearForm) {
+        ACC.form.submit(form, e, resultId, clearForm).done(  function(response){
+            if (response.error) {
+            ACC.returnProduct.addErrorMessages(response);
+        }
+        ACC.form.processResponse(form, response, resultId, clearForm);
+        });
+
+},
+    addErrorMessages: function (messagesResult) {
+        messagesResult.errorMessages.forEach(function (errorMessage) {
+            var errorText = document.getElementById(errorMessage.code);
+            errorText.innerText = errorMessage.message;
+        });
+    }
+}

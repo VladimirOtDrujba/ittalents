@@ -1,0 +1,8 @@
+ACC.globalMessagesStyle = {
+    getMessagesStatusClass: function (message) {
+        if (message.success) {
+            return "info success";
+        }
+        return "info error"
+    },
+}
